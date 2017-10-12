@@ -1,0 +1,14 @@
+<h1> In a paragraph or two, what is your app idea?</h1>
+Our idea is to create a website that allows for individuals to easily request repayment from their
+ roommates for shared expenses. The site will allow you to upload some form of evidence (screenshot or the like) of
+ a bill that you paid, and request payments from your roommates. You will be able to track who has paid and when. You will 
+ be able to create a "Household" with your roommates in order to easily split recurring payments and requests.
+
+
+<h1>What public api / dataset are you going to use?</h1>
+Our plan was to use the Venmo web api, but since it isn't publicly available, we are tentatively going to use paypal's api. This will be used 
+for requesting payment (between peers), and monitoring payment.
+
+
+<h1> What data are you going to push to the client with websockets?</h1>
+Live updates of who has paid and when will be facilitated via websockets. Also push notifications when a request is created for your to pay.
