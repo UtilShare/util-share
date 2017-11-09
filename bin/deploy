@@ -1,0 +1,26 @@
+#! /bin/bash
+set -e
+
+echo 'Setting env...'
+export MIX_ENV=prod
+
+echo 'Copying config from server...'
+sshpass -p $PASSWORD scp -o StrictHostKeyChecking=no ben@$IP:/home/utilshare-config/prod.secret.exs ./config/prod.secret.exs
+
+# create release
+echo 'Compiling assets...'
+cd assets
+npm install
+./node_modules/brunch/bin/brunch b -p
+cd ..
+yes | mix phx.digest
+echo 'Creating release...'
+yes | mix release --env=prod
+
+echo 'Installing release on server...'
+sshpass -p $PASSWORD scp -o StrictHostKeyChecking=no \
+  _build/prod/rel/utilshare/releases/0.0.1/utilshare.tar.gz ben@$IP:/home/util-share
+sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no ben@$IP \
+  'cd /home/util-share; tar xzvf utilshare.tar.gz; export PORT=8080; ./bin/utilshare migrate; ./bin/microblog utilshare'
+
+echo 'Deploy complete!'
