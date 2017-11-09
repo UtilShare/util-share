@@ -21,6 +21,6 @@ echo 'Installing release on server...'
 sshpass -p $PASSWORD scp -o StrictHostKeyChecking=no \
   _build/prod/rel/utilshare/releases/0.0.1/utilshare.tar.gz ben@$IP:/home/util-share
 sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no ben@$IP \
-  'cd /home/util-share; tar xzvf utilshare.tar.gz; export PORT=8080; ./bin/utilshare migrate; ./bin/microblog utilshare'
+  'cd /home/util-share; tar xzvf utilshare.tar.gz; export PORT=8080; ./bin/utilshare migrate; ./bin/utilshare utilshare'
 
 echo 'Deploy complete!'
