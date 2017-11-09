@@ -49,5 +49,8 @@ release :utilshare do
   set applications: [
     :runtime_tools
   ]
+  set commands: [
+    migrate: "rel/commands/migrate.sh"
+  ]
 end
 
