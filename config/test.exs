@@ -12,8 +12,8 @@ config :logger, level: :warn
 # Configure your database
 config :utilshare, Utilshare.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "utilshare",
+  password: "je9ho1eeSu",
   database: "utilshare_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
