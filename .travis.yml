@@ -10,6 +10,8 @@ before_script:
 - nvm install $(cat .nvmrc)
 - nvm use $(cat .nvmrc)
 - yes | mix deps.get
+- psql -U postgres -c "CREATE USER utilshare WITH CREATEUSER PASSWORD 'je9ho1eeSu';"
+- psql -U postgres -c "CREATE DATABASE utilshare_test;"
 - yes | mix ecto.create
 - yes | mix ecto.migrate
 script:
