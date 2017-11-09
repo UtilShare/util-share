@@ -1,0 +1,24 @@
+language: elixir
+elixir:
+- 1.5.2
+otp_release:
+- 20.1
+before_install:
+- sudo apt-get -qq update
+- sudo apt-get install -y sshpass
+before_script:
+- nvm install $(cat .nvmrc)
+- nvm use $(cat .nvmrc)
+- yes | mix deps.get
+- yes | mix ecto.create
+- yes | mix ecto.migrate
+script:
+- mix test
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: "./bin/deploy"
+  on:
+    branch: prod
+notifications:
+  email: false
