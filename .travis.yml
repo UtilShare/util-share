@@ -1,0 +1,30 @@
+language: elixir
+elixir:
+- 1.5.2
+otp_release:
+- 20.1
+before_install:
+- sudo apt-get -qq update
+- sudo apt-get install -y sshpass
+before_script:
+- nvm install $(cat .nvmrc)
+- nvm use $(cat .nvmrc)
+- yes | mix deps.get
+- psql -U postgres -c "CREATE USER utilshare WITH CREATEUSER PASSWORD 'je9ho1eeSu';"
+- psql -U postgres -c "CREATE DATABASE utilshare_test;"
+- yes | mix ecto.create
+- yes | mix ecto.migrate
+script:
+- mix test
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: "./bin/deploy"
+  on:
+    branch: prod
+notifications:
+  email: false
+env:
+  global:
+  - secure: vY3QjoTiwoEzp++areAaG8O53+Tyut4iVNfShnuDQ/3S/iBOdJzlyZudP2PWtNzaoyBKzclE/an2Lqa2QOzyuTLVRtusRHSDQfOVrRNvEqy9TqFb1PayXIWwoftVzOOefexZd1NIt+bbmLhJUSaJS2fvuBGh2IVcRdy0brllT5gYvr22l8p1PWYOngRcLwPtllUN1qMcmGxnWSVZ/BH1VqixH8uUdoSt3jSINeuM1jPkKPMr/3K/w3L6+avsZ7tVRGghtrOZy+bCJXAVr7s3tJ50gsiqp93EbPo1hMD95ozTC24d8hdC/XP8CyyZvXXrN0WSaN6URR2MVftFrjupxnuazCJzS2x9p8cxAYSlIo7Z84/mF2ZBW0iISnIwMruGUjZCrS3+KfM6IMRyO3ojgcnB443lzHoldNv0A6OsTS6awpsrAxdr2hO8pwu7reOQ6S7ciT+MAKz+PiHu7ZNZ4848DtkaCIgmhi0/Jiu/FxM+AG4baYMS5GXEYpcEzF/NTBbD5EOn1uxbCf5kWp94zn0HO6yCFs8iiP5zk4hyFXCYpycnuyTKqMUyav13lWdRu2680Afu/ZI9ubwD4Ixx5fpTcYx3mduOvx2faLJAyn4M/rQ8Vg9UkZdiqtXmfLYOBqK+Av5K5TzcAPpWX3tPv1fAXVRMHrV4La3pOFbS2pI=
+  - secure: iyYfCMO2AiL3NQ4N3xaxIcN/qNsK5cvfgScwqJbbhoZ4Vz0ClJ4Wet32U90QsX7OA/e9L5kLTg7pLeLwSQYVa/RrJNkfNuwRpUlj47JHf22XWUd5itkthK4w/jBTsBzRzg6piMCbpG8iC/ue0PVcjs/CAa1SBUILgRIooUOwOqhkHu/Kv0ElH5jCZEsF7yF+M42z4A09h+bcGcicRUM2SOwfwMSoQ5K0f0mdsuAZUNVO598518DxZlpnCu/wyPsE36WRSdo3vbjjVTMUTQn9IGEQeMV4YUqMLWg3wDRO8C+H63GztXn/U6+NEnlNzr17/cvAaY3VZHKo80KUmNUgWwbiOGVKb+N/9CWhXwbzo7mkSbvcpoFvPrTd61Zw+LJ9jsX8LuFlMb7yDkFiqcdMRZ/WI3nYQSCsAy7Mgl5GHw5lmtwVmiv6qZnbs65QS4hJD3TngJTnBPVNZCtmTR3BiHweFYDADEcn1F5k7Mc3a/eoOTVAaJ7BW6sggXdwelPs+W4bLzkIbKpnwuKd6UckIkmDai22XKQ58cS0wE0mRSaRlW8LQw29/fCH8m6KPTeiqMjAfKtMjqH8Fq2gNB3t3VX9lpcjtXj6eytgVfny7m6FkVc4JrQKSIsOtgHtlw0UlwJeP4i5LUEj1Fmj0LeIUi1BHsH1diowKUyleAWT7G0=
