@@ -1,0 +1,8 @@
+language: elixir
+elixir:
+  - 1.5.2
+otp_release:
+  - 20.1
+before_script:
+  - psql -U postgres -c "CREATE USER utilshare WITH CREATEUSER PASSWORD 'je9ho1eeSu';"
+  - psql -U postgres -c "CREATE DATABASE utilshare_test;"
