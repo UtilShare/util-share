@@ -1,4 +1,7 @@
 import "phoenix_html"
+
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 import App from "./components/app.vue"
 import Foo from "./components/foo.vue"
 import Bar from "./components/bar.vue"

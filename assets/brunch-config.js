@@ -39,9 +39,8 @@ exports.config = {
 
   npm: {
     enabled: true,
-    globals: {
-      Vue: 'vue/dist/vue.common.js',
-      VueRouter: 'vue-router'
-    }
+    aliases: {
+      'vue': 'vue/dist/vue.common.js'
+    },
   }
 };
