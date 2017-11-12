@@ -6,8 +6,6 @@ import App from "./components/app.vue"
 import Foo from "./components/foo.vue"
 import Bar from "./components/bar.vue"
 
-
-
 Vue.use(VueRouter)
 
 const routes = [
