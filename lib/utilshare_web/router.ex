@@ -17,10 +17,12 @@ defmodule UtilshareWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/auth/redirect", PageController, :redirect
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", UtilshareWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", UtilshareWeb do
+    pipe_through :api
+    resources "/users", UserController
+  end
 end
