@@ -3,7 +3,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex';
 import VueRouter from 'vue-router'
+<<<<<<< HEAD
 import axios from 'axios';
+=======
+import Vuex from 'vuex'
+>>>>>>> Set up vuex
 
 import App from './components/app.vue'
 import Register from './components/User/register'
@@ -15,6 +19,7 @@ import types from './store/mutation-types';
 
 Vue.use(VueRouter);
 
+Vue.use(VueRouter)
 
 const routes = [
   { path: '/user/register', component: Register },
@@ -25,6 +30,15 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+// dummy expense data
+const expenses = []
+
+const store = new Vuex.Store({
+  state: {
+    expenses
+  }
 })
 
 let config = {
