@@ -19,4 +19,15 @@ defmodule Utilshare.Accounts.User do
     |> cast(attrs, [:first, :last, :email, :dwolla_id])
     |> validate_required([:first, :last, :email, :dwolla_id])
   end
+  #Expects string based dictionary
+  def dwolla_user_verification(user) do
+    id = ""
+    if(not(Map.has_key?(user, "dwolla_id"))) do
+      id = Utilshare.Accounts.Dwolla.create_customer(user)
+      IO.inspect id
+    end
+    user = Map.put(user, "dwolla_id", id)
+    IO.inspect user
+    user
+  end
 end

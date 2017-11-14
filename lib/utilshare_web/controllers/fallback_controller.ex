@@ -7,6 +7,7 @@ defmodule UtilshareWeb.FallbackController do
   use UtilshareWeb, :controller
 
   def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
+    IO.inspect changeset
     conn
     |> put_status(:unprocessable_entity)
     |> render(UtilshareWeb.ChangesetView, "error.json", changeset: changeset)

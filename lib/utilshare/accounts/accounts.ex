@@ -50,6 +50,8 @@ defmodule Utilshare.Accounts do
 
   """
   def create_user(attrs \\ %{}) do
+    attrs = User.dwolla_user_verification(attrs)
+    IO.inspect attrs
     %User{}
     |> User.changeset(attrs)
     |> Repo.insert()
