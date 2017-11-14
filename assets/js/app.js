@@ -9,8 +9,6 @@ import axios from 'axios';
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/foo', component: Foo },
-  { path: '/bar', component: Bar },
   { path: '/user/register', component: Register }
 ]
 
