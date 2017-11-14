@@ -3,8 +3,6 @@
     <h1>Hello, from Vue!</h1>
     <ul>
       <li><router-link to="/user/register">Register</router-link></li>
-      <li><router-link to="/foo">Foo!</router-link></li>
-      <li><router-link to="/bar">Bar!</router-link></li>
     </ul>
 
     <router-view></router-view>

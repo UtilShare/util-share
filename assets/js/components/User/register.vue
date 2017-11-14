@@ -6,7 +6,7 @@
         <input v-model="first"/>
         <label>Last:</label>
         <input v-model="last"/>
-        <button v-on:click="createUser">Register</button>
+        <button @click.prevent="createUser">Register</button>
     </div>
 </template>
 <script>
@@ -19,7 +19,7 @@ export default {
   methods: {
     createUser: function() {
       axios
-        .post(this.api+'/users', {user:{first:this.first, last:this.last, email: this.email}})
+        .post(`${this.api}/users`, {user:{first:this.first, last:this.last, email: this.email}})
         .then(response => {
           console.log(response.data);
         })

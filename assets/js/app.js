@@ -2,11 +2,9 @@
 
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import App from "./components/app.vue"
-import Foo from "./components/foo.vue"
-import Bar from "./components/bar.vue"
-import Register from "./components/User/register"
-import axios from "axios";
+import App from './components/app.vue'
+import Register from './components/User/register'
+import axios from 'axios';
 
 Vue.use(VueRouter)
 
