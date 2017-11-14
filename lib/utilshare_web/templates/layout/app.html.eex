@@ -23,7 +23,9 @@
     <% end %>
 
     <div class="container">
-      <%= render @view_module, @view_template, assigns %>
+      <div id="app">
+        <app></app>
+      </div>
     </div>
 
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
