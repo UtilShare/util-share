@@ -56,3 +56,5 @@ config :utilshare, Utilshare.Repo,
   database: "utilshare_dev",
   hostname: "localhost",
   pool_size: 10
+
+import_config "config.secret.exs"

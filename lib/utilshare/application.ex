@@ -12,8 +12,9 @@ defmodule Utilshare.Application do
       supervisor(Utilshare.Repo, []),
       # Start the endpoint when the application starts
       supervisor(UtilshareWeb.Endpoint, []),
-      # Start your own worker by calling: Utilshare.Worker.start_link(arg1, arg2, arg3)
-      # worker(Utilshare.Worker, [arg1, arg2, arg3]),
+      # Start your own worker by calling: 
+      # Utilshare.TokenManager.start_link()
+      worker(Utilshare.TokenManager, []),
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
