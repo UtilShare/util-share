@@ -1,9 +1,13 @@
 defmodule Utilshare.TokenManager do
   use GenServer
   def start_link() do
-    auth = Utilshare.Accounts.Dwolla.authenticate_server()
-    Utilshare.TokenRefreshTask.start_link(auth["expires_in"])
-    state0 = %{token: auth["access_token"]}
+    IO.puts "Env: "
+    IO.inspect Mix.env
+    if(Mix.env != :test) do
+      auth = Utilshare.Accounts.Dwolla.authenticate_server()
+      Utilshare.TokenRefreshTask.start_link(auth["expires_in"])
+      state0 = %{token: auth["access_token"]}
+    end
     GenServer.start_link(__MODULE__, state0, name: __MODULE__)
   end
 
