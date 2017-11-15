@@ -1,5 +1,5 @@
 <template>
-  <div class="expense card" style="width: 30rem; float: left; display: block; margin-right: 1rem">
+  <div class="expense card">
     <div class="card-body">
       <h4 class="card-title">{{ expense.name }}</h4>
       <h6 class="card-subtitle mb-2 text-muted">{{ expense.household.name }}</h6>
