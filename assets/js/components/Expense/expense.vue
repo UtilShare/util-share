@@ -1,5 +1,5 @@
 <template>
-  <div class="expense card" style="width: 30rem;">
+  <div class="expense card" style="width: 30rem; float: left; display: block; margin-right: 1rem">
     <div class="card-body">
       <h4 class="card-title">{{ expense.name }}</h4>
       <h6 class="card-subtitle mb-2 text-muted">{{ expense.household.name }}</h6>
@@ -36,21 +36,26 @@
         Charge this expense
       </a>
 
-      <div class="expense-instance row" :key="instance.id"
-        v-for="instance in expense.instances">
-        {{ instance }}
-      </div>
+      <br><br>
+      <h6 class="card-subtitle mb-2">Instances</h6>
+      <instance-list v-if="expense.instances.length" :instances="expense.instances"/>
+      <p v-else>No instances yet</p>
     </div>
   </div>
 </template>
 
 <script>
 import _ from 'lodash'
+
 import { ADD_EXPENSE_INSTANCE } from "../../store/mutation-types";
+import ExpenseInstanceList from './instance-list'
 
 export default {
   'name': 'expense',
   'props': ['expense'],
+  'components': {
+    'instance-list': ExpenseInstanceList
+  },
 
   data() {
     return {
