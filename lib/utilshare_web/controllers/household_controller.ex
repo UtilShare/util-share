@@ -8,14 +8,17 @@ defmodule UtilshareWeb.HouseholdController do
 
 
   def create(conn, %{"household" => household_params}) do
-    IO.puts "Auth"
-    IO.inspect conn.assigns.auth
+    household_params = Map.put(household_params, "owner_id",conn.assigns.auth.id)
+    IO.inspect household_params
     with {:ok, %Household{} = household} <- Accounts.create_household(household_params) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", household_path(conn, :show, household))
       |> render("show.json", household: household)
     end
+  end
+  def add_users(conn, %{"id" => id,"users" => users}) do
+    
   end
 
   def show(conn, %{"id" => id}) do

@@ -28,5 +28,6 @@ defmodule UtilshareWeb.Router do
     post "/sessions", SessionController, :create
     post "/households", HouseholdController, :create
     get "/households/:id", HouseholdController, :show
+    patch "/households/:id", HouseholdController, :add_users
   end
 end
