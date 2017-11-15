@@ -14,4 +14,7 @@ defmodule Utilshare.Config do
   def api_secret do
     Application.get_env(:utilshare, :secret)
   end
+  def jwt_hash do
+    Application.get_env(:utilshare, :jwt_hash)
+  end
 end

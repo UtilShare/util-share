@@ -4,12 +4,14 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './components/app.vue'
 import Register from './components/User/register'
+import Login from './components/User/login'
 import axios from 'axios';
 
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/user/register', component: Register }
+  { path: '/user/register', component: Register },
+  { path: '/user/login', component: Login }
 ]
 
 const router = new VueRouter({

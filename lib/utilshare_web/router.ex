@@ -24,5 +24,6 @@ defmodule UtilshareWeb.Router do
   scope "/api", UtilshareWeb do
     pipe_through :api
     resources "/users", UserController
+    post "/sessions", SessionController, :create
   end
 end
