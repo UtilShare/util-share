@@ -1,6 +1,6 @@
 defmodule UtilshareWeb.Router do
   use UtilshareWeb, :router
-
+  import UtilshareWeb.Plugs
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -11,6 +11,7 @@ defmodule UtilshareWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :set_auth
   end
 
   scope "/", UtilshareWeb do
