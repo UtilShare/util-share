@@ -1,12 +1,17 @@
 <template>
     <div class="register">
-        <label>Email:</label>
-        <input v-model="email"/>
-        <label>First:</label>
-        <input v-model="first"/>
-        <label>Last:</label>
-        <input v-model="last"/>
-        <button @click.prevent="createUser">Register</button>
+      <form @submit.prevent="createUser" class="form-control">
+        <label for="email">Email:</label>
+        <input id="email" v-model="email" class="form-control"/>
+
+        <label for="first">First Name:</label>
+        <input id="first" v-model="first" class="form-control"/>
+
+        <label for="last">Last Name:</label>
+        <input id="last" v-model="last" class="form-control"/>
+
+        <input type="submit" value="Register" class="btn btn-primary">
+      </form>
     </div>
 </template>
 <script>

@@ -10,6 +10,7 @@
 <script>
 import axios from "axios";
 import { SET_AUTH } from "../../store/mutation-types";
+
 export default {
   name: "login",
   inject: ["api"],

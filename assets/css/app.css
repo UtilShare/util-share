@@ -1,1 +1,8 @@
 /* This file is for your main application css. */
+
+.expense {
+  width: 30rem;
+  float: left;
+  display: block;
+  margin-right: 1rem;
+}
