@@ -1,15 +1,16 @@
 // import "phoenix_html"
 
 import Vue from 'vue'
+import Vuex from "vuex";
 import VueRouter from 'vue-router'
 import App from './components/app.vue'
 import Register from './components/User/register'
 import Login from './components/User/login'
-import axios from 'axios';
 import store from "./store";
+import axios from 'axios';
 
 Vue.use(VueRouter);
-Vue.use(Vuex);
+
 
 const routes = [
   { path: '/user/register', component: Register },
