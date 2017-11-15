@@ -33,7 +33,24 @@ const router = new VueRouter({
 })
 
 // dummy expense data
-const expenses = []
+const expenses = [
+  {
+    name: 'WiFi',
+    household: {
+      id: 1,
+      name: 'South End Apartment',
+      users: [
+        { name: 'Svetomir Eliora', id: 2 },
+        { name: 'Felix Derick', id: 3 },
+        { name: 'Sheard Rozaliya', id: 4 }
+      ]
+    },
+    owner: {
+      name: 'John Doe',
+      id: 1
+    }
+  }
+]
 
 const store = new Vuex.Store({
   state: {
