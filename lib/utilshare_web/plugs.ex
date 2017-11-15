@@ -6,12 +6,16 @@ defmodule UtilshareWeb.Plugs do
     auth = get_req_header(conn, "authorization")
     IO.inspect auth
     auth = List.first(auth)
-    %{"token" => auth} = Regex.named_captures(~r/Bearer (?<token>.*)/i, auth)
-    case Phoenix.Token.verify(UtilshareWeb.Endpoint, Utilshare.Config.jwt_hash, auth, max_age: 86400) do
-      {:ok, user} ->
-        IO.inspect user
-        assign(conn, :auth, user)
-      {:error, _} ->
+    case Regex.named_captures(~r/Bearer (?<token>.*)/i, auth || "") do
+      %{"token" => auth} ->
+        case Phoenix.Token.verify(UtilshareWeb.Endpoint, Utilshare.Config.jwt_hash, auth, max_age: 86400) do
+          {:ok, user} ->
+            IO.inspect user
+            assign(conn, :auth, user)
+          {:error, _} ->
+            assign(conn, :auth, nil)
+        end
+      nil ->
         assign(conn, :auth, nil)
     end
   end
