@@ -6,8 +6,10 @@ import App from './components/app.vue'
 import Register from './components/User/register'
 import Login from './components/User/login'
 import axios from 'axios';
+import store from "./store";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
+Vue.use(Vuex);
 
 const routes = [
   { path: '/user/register', component: Register },
@@ -23,6 +25,7 @@ let config = {
 
 window.vms = new Vue({
   router,
+  store,
   provide: config,
   components: {
     'app': App

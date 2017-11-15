@@ -7,6 +7,7 @@
 </template>
 <script>
 import axios from "axios";
+import types from "../../store/mutation-types";
 export default {
   name: "login",
   inject: ["api"],
@@ -15,6 +16,7 @@ export default {
       axios
         .post(`${this.api}/sessions`, { login: { email: this.email } })
         .then(response => {
+          this.$store.dispatch(types.SET_AUTH, products)
           console.log(response.data);
         })
         .catch(reason => console.log(reason));
