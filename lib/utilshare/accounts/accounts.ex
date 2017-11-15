@@ -79,6 +79,18 @@ defmodule Utilshare.Accounts do
 
   def get_roommate!(id), do: Repo.get!(Roommate, id)
 
+  def add_roommates_to_household(household_id, emails) do
+    roommates = Enum.map emails, fn email ->
+        user = get_user_by_email(email)
+        %Roommate{}
+        |>Roommate.changeset(%{"user_id" => user.id, "household_id" => household_id})
+     end
+     IO.inspect roommates
+     if(Enum.all?(roommates, fn r -> r.valid? end )) do
+      Repo.insert_all("roommates", Enum.map(roommates, fn x -> x.changes end))
+     end
+  end
+
   def create_roommate(attrs \\ %{}) do
     %Roommate{}
     |> Roommate.changeset(attrs)

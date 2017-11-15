@@ -19,4 +19,16 @@ defmodule UtilshareWeb.Plugs do
         assign(conn, :auth, nil)
     end
   end
+  
+  def authorized(conn, _opts) do
+    if(not(is_nil(conn.assigns.auth)))do
+      conn
+    else
+      conn
+      |> put_status(403) 
+      |> send_resp(403, "Unauthorized")
+      |> halt
+    end
+
+  end
 end

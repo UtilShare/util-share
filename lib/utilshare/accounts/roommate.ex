@@ -4,7 +4,7 @@ defmodule Utilshare.Accounts.Roommate do
   alias Utilshare.Accounts.Roommate
 
 
-  schema "roomates" do
+  schema "roommates" do
     # field :user_id, :id
     belongs_to(:user, Utilshare.Accounts.User)
     # field :household_id, :id
@@ -16,7 +16,7 @@ defmodule Utilshare.Accounts.Roommate do
   @doc false
   def changeset(%Roommate{} = roommate, attrs) do
     roommate
-    |> cast(attrs, [])
-    |> validate_required([])
+    |> cast(attrs, [:user_id, :household_id])
+    |> validate_required([:user_id, :household_id])
   end
 end
