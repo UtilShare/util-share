@@ -29,7 +29,8 @@
           </div>
         </div>
 
-        <input type="submit" class="btn btn-primary"/>
+        <input type="submit" class="btn btn-primary" value="Charge"/>
+        <input type="submit" class="btn btn-secondary" value="Cancel" @click.prevent="toggleCharging"/>
       </form>
       <a v-else @click.prevent="toggleCharging" class="card-link btn btn-outline-primary">
         Charge this expense
