@@ -7,7 +7,10 @@
 
       <form class="form-control" @submit.prevent="toggleCharging" v-if="isCharging">
         <label :for="expense.id + '-amount'">Amount:</label>
-        <input type="number" class="form-control" id="expense.id + '-amount'"/>
+        <div class="input-group">
+          <div class="input-group-addon">$</div>
+          <input type="number" class="form-control" id="expense.id + '-amount'"/>
+        </div>
 
         <div class="row expense-split" v-for="user in usersToCharge">
           <div class="col-md-8">
@@ -17,8 +20,11 @@
           </div>
 
           <div class="col-md-4">
-            <input type="number" class="form-control inline"
-              :id="expense.id + '-user-' + user.id + '-split'"/>
+            <div class="input-group">
+              <div class="input-group-addon">%</div>
+              <input type="number" class="form-control inline"
+                :id="expense.id + '-user-' + user.id + '-split'"/>
+            </div>
           </div>
         </div>
 
