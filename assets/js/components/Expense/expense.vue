@@ -7,12 +7,13 @@
 
       <form class="form-control" @submit.prevent="toggleCharging" v-if="isCharging">
         <label :for="expense.id + '-amount'">Amount:</label>
+
         <div class="input-group">
           <div class="input-group-addon">$</div>
-          <input type="number" class="form-control" id="expense.id + '-amount'"/>
+          <input v-model="instance.amount" type="number" class="form-control" id="expense.id + '-amount'"/>
         </div>
 
-        <div class="row expense-split" v-for="user in usersToCharge">
+        <div class="row expense-split" v-for="user in instance.users">
           <div class="col-md-8">
             <label :for="expense.id + '-user-' + user.id + '-split'">
               {{ user.name }}:
@@ -22,7 +23,7 @@
           <div class="col-md-4">
             <div class="input-group">
               <div class="input-group-addon">%</div>
-              <input type="number" class="form-control inline"
+              <input type="number" class="form-control inline" v-model="user.split"
                 :id="expense.id + '-user-' + user.id + '-split'"/>
             </div>
           </div>
@@ -44,13 +45,11 @@ export default {
 
   data() {
     return {
-      isCharging: false
-    }
-  },
-
-  computed: {
-    usersToCharge() {
-      return this.expense.household.users.filter(u => u.id != this.expense.owner.id)
+      isCharging: false,
+      instance: {
+        users: this.expense.household.users.filter(u => u.id != this.expense.owner.id),
+        amount: 0
+      }
     }
   },
 
