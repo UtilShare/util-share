@@ -1,7 +1,10 @@
 import * as types from '../mutation-types'
 
 const state = {
-    auth: ''
+    auth: '',
+    first: '',
+    last: '',
+    email: '',
 }
 
 // getters

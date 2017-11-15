@@ -3,6 +3,8 @@
         <label>Email:</label>
         <input v-model="email"/>
         <button @click.prevent="login">Login</button>
+        <label>AuthToken:</label>
+        <label>{{token}}</label>
     </div>
 </template>
 <script>
@@ -11,6 +13,11 @@ import { SET_AUTH } from "../../store/mutation-types";
 export default {
   name: "login",
   inject: ["api"],
+  computed: {
+    token() {
+      return this.$store.getters.auth;
+    }
+  },
   methods: {
     login: function() {
       axios
