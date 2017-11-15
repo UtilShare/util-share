@@ -11,7 +11,6 @@
 </template>
 <script>
 import axios from "axios";
-console.log("here");
 
 export default {
   name: "register",
