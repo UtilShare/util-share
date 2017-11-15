@@ -19,7 +19,6 @@ defmodule UtilshareWeb.HouseholdController do
     end
   end
   def add_users(conn, %{"id" => id,"user_emails" => users}) do
-    IO.inspect conn.assigns.auth
     users = [conn.assigns.auth.email | users]
     Accounts.add_roommates_to_household(id, users)
     send_resp(conn, :no_content, "")

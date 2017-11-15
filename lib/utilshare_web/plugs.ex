@@ -4,7 +4,6 @@ defmodule UtilshareWeb.Plugs do
 
   def set_auth(conn, _opts) do
     auth = get_req_header(conn, "authorization")
-    IO.inspect auth
     auth = List.first(auth)
     case Regex.named_captures(~r/Bearer (?<token>.*)/i, auth || "") do
       %{"token" => auth} ->
