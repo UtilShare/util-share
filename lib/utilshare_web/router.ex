@@ -26,5 +26,7 @@ defmodule UtilshareWeb.Router do
     pipe_through :api
     resources "/users", UserController
     post "/sessions", SessionController, :create
+    post "/households", HouseholdController, :create
+    get "/households/:id", HouseholdController, :show
   end
 end

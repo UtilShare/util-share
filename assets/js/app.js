@@ -6,6 +6,7 @@ import VueRouter from 'vue-router'
 import App from './components/app.vue'
 import Register from './components/User/register'
 import Login from './components/User/login'
+import CreateHousehold from "./components/Household/create-household";
 import store from './store';
 import axios from 'axios';
 import types from './store/mutation-types';
@@ -15,7 +16,8 @@ Vue.use(VueRouter);
 
 const routes = [
   { path: '/user/register', component: Register },
-  { path: '/user/login', component: Login }
+  { path: '/user/login', component: Login },
+  { path: '/household/create', component: CreateHousehold },
 ]
 
 const router = new VueRouter({

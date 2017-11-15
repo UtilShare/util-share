@@ -4,6 +4,7 @@
     <ul>
       <li><router-link to="/user/register">Register</router-link></li>
       <li><router-link to="/user/login">Login</router-link></li>
+      <li><router-link to="/household/create">Create Household</router-link></li>
     </ul>
     <router-view></router-view>
   </div>
