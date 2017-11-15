@@ -40,6 +40,7 @@ const expenses = [
       id: 1,
       name: 'South End Apartment',
       users: [
+        { name: 'John Doe', id: 1 },
         { name: 'Svetomir Eliora', id: 2 },
         { name: 'Felix Derick', id: 3 },
         { name: 'Sheard Rozaliya', id: 4 }
