@@ -1,1 +1,2 @@
-export const SET_AUTH = "SET_AUTH"
+export const SET_AUTH = "SET_AUTH";
+export const ADD_EXPENSE_INSTANCE = "ADD_EXPENSE_INSTANCE";

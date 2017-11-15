@@ -5,26 +5,26 @@
       <h6 class="card-subtitle mb-2 text-muted">{{ expense.household.name }}</h6>
       <p>Owner: {{ expense.owner.name }}</p>
 
-      <form class="form-control" @submit.prevent="toggleCharging" v-if="isCharging">
+      <form class="form-control" @submit.prevent="submitInstance" v-if="isCharging">
         <label :for="expense.id + '-amount'">Amount:</label>
 
         <div class="input-group">
           <div class="input-group-addon">$</div>
-          <input v-model="instance.amount" type="number" class="form-control" id="expense.id + '-amount'"/>
+          <input v-model="newInstance.amount" type="number" class="form-control" id="expense.id + '-amount'"/>
         </div>
 
-        <div class="row expense-split" v-for="user in instance.users">
+        <div class="row expense-split" v-for="split in newInstance.splits">
           <div class="col-md-8">
-            <label :for="expense.id + '-user-' + user.id + '-split'">
-              {{ user.name }}:
+            <label :for="expense.id + '-user-' + split.user.id + '-split'">
+              {{ split.user.name }}:
             </label>
           </div>
 
           <div class="col-md-4">
             <div class="input-group">
               <div class="input-group-addon">%</div>
-              <input type="number" class="form-control inline" v-model="user.split"
-                :id="expense.id + '-user-' + user.id + '-split'"/>
+              <input type="number" class="form-control inline" v-model="split.percent"
+                :id="expense.id + '-user-' + split.user.id + '-split'"/>
             </div>
           </div>
         </div>
@@ -35,11 +35,19 @@
       <a v-else @click.prevent="toggleCharging" class="card-link btn btn-outline-primary">
         Charge this expense
       </a>
+
+      <div class="expense-instance row" :key="instance.id"
+        v-for="instance in expense.instances">
+        {{ instance }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import _ from 'lodash'
+import { ADD_EXPENSE_INSTANCE } from "../../store/mutation-types";
+
 export default {
   'name': 'expense',
   'props': ['expense'],
@@ -47,16 +55,36 @@ export default {
   data() {
     return {
       isCharging: false,
-      instance: {
-        users: this.expense.household.users.filter(u => u.id != this.expense.owner.id),
-        amount: 0
-      }
+      newInstance: this.generateDefaultInstance()
     }
   },
 
   methods: {
     toggleCharging() {
       this.isCharging = !this.isCharging;
+    },
+
+    submitInstance() {
+      // TODO: Submit this to an API once that's a thing
+      this.$store.commit(ADD_EXPENSE_INSTANCE, { expense: this.expense, instance: this.newInstance })
+      this.newInstance = this.generateDefaultInstance()
+      this.toggleCharging();
+    },
+
+    generateDefaultInstance() {
+      let usersForInstance = _.filter(
+        this.expense.household.users,
+        u => u.id != this.expense.owner.id
+      );
+
+      let defaultSplits = _.map(usersForInstance, u => {
+        return { user: u, complete: false, percent: 0 }
+      })
+
+      return {
+        splits: defaultSplits,
+        amount: 0
+      }
     }
   }
 }

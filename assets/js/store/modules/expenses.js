@@ -1,5 +1,10 @@
+import _ from 'lodash'
+
+import * as types from '../mutation-types'
+
 const state = [
   {
+    id: 1,
     name: 'WiFi',
     household: {
       id: 1,
@@ -14,13 +19,22 @@ const state = [
     owner: {
       name: 'John Doe',
       id: 1
-    }
+    },
+    instances: []
   }
 ]
 
 const getters = {}
 const actions = {}
-const mutations = {}
+const mutations = {
+  [types.ADD_EXPENSE_INSTANCE](state, { expense, instance }) {
+    expense.instances = expense.instances.concat(instance)
+    state.expenses = _.map(state.expenses, (e) => {
+      if (e.id === expense.id) return expense
+      return e
+    })
+  }
+}
 
 export default {
   state,
