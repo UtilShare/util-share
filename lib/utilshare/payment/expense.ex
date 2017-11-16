@@ -5,8 +5,8 @@ defmodule Utilshare.Payment.Expense do
 
 
   schema "expenses" do
-    field :desc, :string
     field :name, :string
+    field :desc, :string
     belongs_to(:household, Utilshare.Accounts.Household)
     belongs_to(:owner, Utilshare.Accounts.User)
     # field :household_id, :id

@@ -7,6 +7,7 @@ defmodule Utilshare.Payment.ExpenseInstance do
   schema "expense_instances" do
     field :complete, :boolean, default: false
     field :note, :string
+    field :amount, :decimal
     belongs_to(:expense, Utilshare.Payment.Expense)
 
     timestamps()
