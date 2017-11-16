@@ -5,6 +5,7 @@ const state = {
     first: '',
     last: '',
     email: '',
+    households: []
 }
 
 // getters
@@ -23,6 +24,9 @@ const mutations = {
         state.auth = auth
     },
 
+  [types.SET_USER](state, { user }) {
+    state = { state, ...user }
+  }
 }
 
 export default {

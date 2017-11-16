@@ -24,10 +24,10 @@
         <input id="zip" v-model.trim="zip" class="form-control"/>
 
         <label for="dob">Date of Birth:</label>
-        <input id="dob" v-model.trim="dob" class="form-control"/>
+        <input id="dob" placeholder="YYYY-MM-DD" v-model.trim="dob" class="form-control"/>
 
         <label for="ssn">SSN (last 4 only):</label>
-        <input id="ssn" v-model.trim="ssn" maxlength="4" class="form-control"/>
+        <input id="ssn" type="password" v-model.trim="ssn" maxlength="4" class="form-control"/>
 
         <input type="submit" value="Register" class="btn btn-primary mt-2">
       </form>

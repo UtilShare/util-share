@@ -9,7 +9,7 @@
 </template>
 <script>
 import axios from "axios";
-import { SET_AUTH } from "../../store/mutation-types";
+import { SET_AUTH, SET_USER } from "../../store/mutation-types";
 
 export default {
   name: "login",
@@ -25,6 +25,7 @@ export default {
         .post(`${this.api}/sessions`, { login: { email: this.email } })
         .then(response => {
           this.$store.commit(SET_AUTH, { auth: response.data.jwt });
+          this.$store.commit(SET_USER, { user: response.data.user })
         })
         .catch(reason => console.log(reason));
     }

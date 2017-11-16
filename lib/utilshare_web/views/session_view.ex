@@ -1,6 +1,7 @@
 defmodule UtilshareWeb.SessionView do
   use UtilshareWeb, :view
   alias UtilshareWeb.SessionView
+  alias UtilshareWeb.UserView
 
   def render("index.json", %{sessions: sessions}) do
     %{data: render_many(sessions, SessionView, "session.json")}
@@ -10,8 +11,11 @@ defmodule UtilshareWeb.SessionView do
     %{data: render_one(session, SessionView, "session.json")}
   end
 
-  def render("success.json", %{jwt: jwt}) do
-    %{jwt: jwt}
+  def render("success.json", jwt, user) do
+    %{
+      jwt: jwt,
+      user: UserView.render("user.json", user: user)
+    }
   end
   def render("error.json", %{error: reason}) do
     %{error: reason.id}
