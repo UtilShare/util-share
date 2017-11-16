@@ -9,7 +9,8 @@ defmodule Utilshare.Accounts.User do
     field :email, :string
     field :first, :string
     field :last, :string
-
+    
+    has_many :expenses, Utilshare.Payment.Expense, [foreign_key: :owner_id]
     timestamps()
   end
 
