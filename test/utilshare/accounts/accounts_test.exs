@@ -129,61 +129,61 @@ defmodule Utilshare.AccountsTest do
   #   end
   # end
 
-  describe "roomates" do
-    alias Utilshare.Accounts.Roommate
+#   describe "roomates" do
+#     alias Utilshare.Accounts.Roommate
 
-    @valid_attrs %{}
-    @update_attrs %{}
-    @invalid_attrs %{}
+#     @valid_attrs %{}
+#     @update_attrs %{}
+#     @invalid_attrs %{}
 
-    def roommate_fixture(attrs \\ %{}) do
-      {:ok, roommate} =
-        attrs
-        |> Enum.into(@valid_attrs)
-        |> Accounts.create_roommate()
+#     def roommate_fixture(attrs \\ %{}) do
+#       {:ok, roommate} =
+#         attrs
+#         |> Enum.into(@valid_attrs)
+#         |> Accounts.create_roommate()
 
-      roommate
-    end
+#       roommate
+#     end
 
-    test "list_roomates/0 returns all roomates" do
-      roommate = roommate_fixture()
-      assert Accounts.list_roomates() == [roommate]
-    end
+#     test "list_roomates/0 returns all roomates" do
+#       roommate = roommate_fixture()
+#       assert Accounts.list_roomates() == [roommate]
+#     end
 
-    test "get_roommate!/1 returns the roommate with given id" do
-      roommate = roommate_fixture()
-      assert Accounts.get_roommate!(roommate.id) == roommate
-    end
+#     test "get_roommate!/1 returns the roommate with given id" do
+#       roommate = roommate_fixture()
+#       assert Accounts.get_roommate!(roommate.id) == roommate
+#     end
 
-    test "create_roommate/1 with valid data creates a roommate" do
-      assert {:ok, %Roommate{} = roommate} = Accounts.create_roommate(@valid_attrs)
-    end
+#     test "create_roommate/1 with valid data creates a roommate" do
+#       assert {:ok, %Roommate{} = roommate} = Accounts.create_roommate(@valid_attrs)
+#     end
 
-    test "create_roommate/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Accounts.create_roommate(@invalid_attrs)
-    end
+#     test "create_roommate/1 with invalid data returns error changeset" do
+#       assert {:error, %Ecto.Changeset{}} = Accounts.create_roommate(@invalid_attrs)
+#     end
 
-    test "update_roommate/2 with valid data updates the roommate" do
-      roommate = roommate_fixture()
-      assert {:ok, roommate} = Accounts.update_roommate(roommate, @update_attrs)
-      assert %Roommate{} = roommate
-    end
+#     test "update_roommate/2 with valid data updates the roommate" do
+#       roommate = roommate_fixture()
+#       assert {:ok, roommate} = Accounts.update_roommate(roommate, @update_attrs)
+#       assert %Roommate{} = roommate
+#     end
 
-    test "update_roommate/2 with invalid data returns error changeset" do
-      roommate = roommate_fixture()
-      assert {:error, %Ecto.Changeset{}} = Accounts.update_roommate(roommate, @invalid_attrs)
-      assert roommate == Accounts.get_roommate!(roommate.id)
-    end
+#     test "update_roommate/2 with invalid data returns error changeset" do
+#       roommate = roommate_fixture()
+#       assert {:error, %Ecto.Changeset{}} = Accounts.update_roommate(roommate, @invalid_attrs)
+#       assert roommate == Accounts.get_roommate!(roommate.id)
+#     end
 
-    test "delete_roommate/1 deletes the roommate" do
-      roommate = roommate_fixture()
-      assert {:ok, %Roommate{}} = Accounts.delete_roommate(roommate)
-      assert_raise Ecto.NoResultsError, fn -> Accounts.get_roommate!(roommate.id) end
-    end
+#     test "delete_roommate/1 deletes the roommate" do
+#       roommate = roommate_fixture()
+#       assert {:ok, %Roommate{}} = Accounts.delete_roommate(roommate)
+#       assert_raise Ecto.NoResultsError, fn -> Accounts.get_roommate!(roommate.id) end
+#     end
 
-    test "change_roommate/1 returns a roommate changeset" do
-      roommate = roommate_fixture()
-      assert %Ecto.Changeset{} = Accounts.change_roommate(roommate)
-    end
-  end
+#     test "change_roommate/1 returns a roommate changeset" do
+#       roommate = roommate_fixture()
+#       assert %Ecto.Changeset{} = Accounts.change_roommate(roommate)
+#     end
+#   end
 end
