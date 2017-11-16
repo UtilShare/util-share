@@ -19,7 +19,7 @@
 </template>
 <script>
 import axios from "axios";
-import ApiMixin from "../../../mixins/Api";
+import ApiMixin from "../../mixins/Api";
 
 export default {
   name: "household",
