@@ -29,7 +29,18 @@ alias Utilshare.Config, as: Config
     headers = ["Authorization": "Bearer #{Config.token}",
                "Content-Type": "application/vnd.dwolla.v1.hal+json",
                "Accept": "application/vnd.dwolla.v1.hal+json"]
-    user = %{ firstName: user["first"], lastName: user["last"], email: user["email"] }
+    user = %{ firstName: user["first"],
+              lastName: user["last"],
+              email: user["email"],
+              address1: user["address"],
+              city: user["city"],
+              state: user["state"],
+              postalCode: user["zip"],
+              dateOfBirth: user["dob"],
+              ssn: user["ssn"],
+              ip: user["ip"],
+              type: "personal"
+             }
     {:ok, body} = Poison.encode(user)
     IO.puts body
     case HTTPoison.post("#{Config.api_url}/customers",body,headers)do
