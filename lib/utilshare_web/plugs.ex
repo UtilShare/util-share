@@ -4,7 +4,6 @@ defmodule UtilshareWeb.Plugs do
 
   def set_auth(conn, _opts) do
     auth = get_req_header(conn, "authorization")
-    IO.inspect auth
     auth = List.first(auth)
     case Regex.named_captures(~r/Bearer (?<token>.*)/i, auth || "") do
       %{"token" => auth} ->
@@ -18,5 +17,17 @@ defmodule UtilshareWeb.Plugs do
       nil ->
         assign(conn, :auth, nil)
     end
+  end
+  
+  def authorized(conn, _opts) do
+    if(not(is_nil(conn.assigns.auth)))do
+      conn
+    else
+      conn
+      |> put_status(403) 
+      |> send_resp(403, "Unauthorized")
+      |> halt
+    end
+
   end
 end

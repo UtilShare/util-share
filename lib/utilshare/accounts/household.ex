@@ -6,7 +6,6 @@ defmodule Utilshare.Accounts.Household do
 
   schema "households" do
     field :name, :string
-
     timestamps()
   end
 

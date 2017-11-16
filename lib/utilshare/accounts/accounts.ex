@@ -17,6 +17,7 @@ defmodule Utilshare.Accounts do
   
   def get_user_by_email(email) do
     from(s in User, where: s.email == ^email)
+    |> preload(:expenses)
     |> Repo.one!
   end
 
@@ -45,97 +46,78 @@ defmodule Utilshare.Accounts do
 
   alias Utilshare.Accounts.Household
 
-  @doc """
-  Returns the list of households.
-
-  ## Examples
-
-      iex> list_households()
-      [%Household{}, ...]
-
-  """
   def list_households do
     Repo.all(Household)
   end
 
-  @doc """
-  Gets a single household.
+  def get_households_for_user(id) do
+    query = from h in Utilshare.Accounts.Household,
+            join: r in Utilshare.Accounts.Roommate, on: r.household_id == h.id,
+            where: r.user_id == ^id
+    Repo.all(query)
+  end
 
-  Raises `Ecto.NoResultsError` if the Household does not exist.
 
-  ## Examples
-
-      iex> get_household!(123)
-      %Household{}
-
-      iex> get_household!(456)
-      ** (Ecto.NoResultsError)
-
-  """
   def get_household!(id), do: Repo.get!(Household, id)
 
-  @doc """
-  Creates a household.
-
-  ## Examples
-
-      iex> create_household(%{field: value})
-      {:ok, %Household{}}
-
-      iex> create_household(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
   def create_household(attrs \\ %{}) do
     %Household{}
     |> Household.changeset(attrs)
     |> Repo.insert()
   end
 
-  @doc """
-  Updates a household.
-
-  ## Examples
-
-      iex> update_household(household, %{field: new_value})
-      {:ok, %Household{}}
-
-      iex> update_household(household, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
   def update_household(%Household{} = household, attrs) do
     household
     |> Household.changeset(attrs)
     |> Repo.update()
   end
 
-  @doc """
-  Deletes a Household.
-
-  ## Examples
-
-      iex> delete_household(household)
-      {:ok, %Household{}}
-
-      iex> delete_household(household)
-      {:error, %Ecto.Changeset{}}
-
-  """
   def delete_household(%Household{} = household) do
     Repo.delete(household)
   end
 
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking household changes.
-
-  ## Examples
-
-      iex> change_household(household)
-      %Ecto.Changeset{source: %Household{}}
-
-  """
   def change_household(%Household{} = household) do
     Household.changeset(household, %{})
   end
+
+  alias Utilshare.Accounts.Roommate
+
+  def list_roomates do
+    Repo.all(Roommate)
+  end
+
+  def get_roommate!(id), do: Repo.get!(Roommate, id)
+
+  def add_roommates_to_household(household_id, emails) do
+    roommates = Enum.map emails, fn email ->
+        user = get_user_by_email(email)
+        %Roommate{}
+        |>Roommate.changeset(%{"user_id" => user.id, "household_id" => household_id})
+     end
+     IO.inspect roommates
+     if(Enum.all?(roommates, fn r -> r.valid? end )) do
+      Repo.insert_all("roommates", Enum.map(roommates, fn x -> x.changes end))
+     end
+  end
+
+  def create_roommate(attrs \\ %{}) do
+    %Roommate{}
+    |> Roommate.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def update_roommate(%Roommate{} = roommate, attrs) do
+    roommate
+    |> Roommate.changeset(attrs)
+    |> Repo.update()
+  end
+
+  def delete_roommate(%Roommate{} = roommate) do
+    Repo.delete(roommate)
+  end
+
+  def change_roommate(%Roommate{} = roommate) do
+    Roommate.changeset(roommate, %{})
+  end
+
 end

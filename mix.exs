@@ -43,7 +43,8 @@ defmodule Utilshare.Mixfile do
       {:cowboy, "~> 1.0"},
       {:distillery, "~> 1.4", runtime: false},
       {:httpoison, "~> 0.13"},
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
+      {:decimal, "~> 1.0"},
     ]
   end
 

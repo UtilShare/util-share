@@ -1,5 +1,8 @@
 defmodule UtilshareWeb.HouseholdController do
   use UtilshareWeb, :controller
+  import UtilshareWeb.Plugs
+
+  plug :authorized
 
   alias Utilshare.Accounts
   alias Utilshare.Accounts.Household
@@ -8,14 +11,18 @@ defmodule UtilshareWeb.HouseholdController do
 
 
   def create(conn, %{"household" => household_params}) do
-    IO.puts "Auth"
-    IO.inspect conn.assigns.auth
     with {:ok, %Household{} = household} <- Accounts.create_household(household_params) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", household_path(conn, :show, household))
       |> render("show.json", household: household)
     end
+  end
+  
+  def add_users(conn, %{"id" => id,"user_emails" => users}) do
+    users = [conn.assigns.auth.email | users]
+    Accounts.add_roommates_to_household(id, users)
+    send_resp(conn, :no_content, "")
   end
 
   def show(conn, %{"id" => id}) do
