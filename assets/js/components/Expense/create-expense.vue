@@ -39,6 +39,14 @@ export default {
         { id: 2, name: 'Belize Timeshare' }
       ]
     }
+  },
+
+  methods: {
+    createExpense() {
+      sendRequest('expenses', 'POST', this.expense)
+        .then(response => console.log(response))
+        .catch(reason => console.log(reason))
+    }
   }
 }
 </script>
