@@ -13,7 +13,7 @@ defmodule UtilshareWeb.ExpenseView do
   def render("expense.json", %{expense: expense}) do
     %{id: expense.id,
       desc: expense.desc,
-      name: expense.name
+      name: expense.name,
       household: expense.household_id,
       owner_id: expense.owner_id,
     }
