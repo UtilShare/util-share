@@ -1,9 +1,5 @@
 <template>
     <div class="household">
-      <!-- <form @submit.prevent="createHousehold">
-        <input v-model="name"/>
-        <input type="submit" value="Create Household"/>
-      </form> -->
       <form @submit.prevent="createHousehold" class="form w-25">
         <label>Household Name</label>
         <input v-model="name"/>
