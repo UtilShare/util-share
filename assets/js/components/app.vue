@@ -38,7 +38,6 @@ export default {
     }
   },
   mounted: function() {
-    debugger;
     if (!this.token) {
       this.$router.push("/user/landing");
     }
