@@ -8,9 +8,12 @@ defmodule Utilshare.Payment.PaymentRequest do
     field :percent, :integer
     field :transaction_id, :string
     # belongs_to(:expense, Utilshare.Payment.)
-    field :expense_instance, :id
-    field :requester, :id
-    field :requestee, :id
+    # field :expense_instance, :id
+    belongs_to(:expense_instance, Utilshare.Payment.ExpenseInstance)
+    belongs_to(:requester, Utilshare.Accounts.User)
+    belongs_to(:requestee, Utilshare.Accounts.User)
+    #field :requester, :id
+    # field :requestee, :id
     field :paid_at, :utc_datetime
 
     timestamps()
@@ -19,7 +22,7 @@ defmodule Utilshare.Payment.PaymentRequest do
   @doc false
   def changeset(%PaymentRequest{} = payment_request, attrs) do
     payment_request
-    |> cast(attrs, [:percent])
-    |> validate_required([:percent])
+    |> cast(attrs, [:percent, :requester_id, :requestee_id, :expense_instance_id, :paid_at])
+    |> validate_required([:percent, :requester_id, :requestee_id, :expense_instance_id, :paid_at])
   end
 end

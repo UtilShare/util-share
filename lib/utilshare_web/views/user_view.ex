@@ -23,7 +23,12 @@ defmodule UtilshareWeb.UserView do
       first: user.first,
       last: user.last,
       email: user.email,
+<<<<<<< HEAD
       dwolla_id: user.dwolla_id
+=======
+      dwolla_id: user.dwolla_id,
+      households: HouseholdView.render("index.json",%{households: households})
+>>>>>>> controller and formatting for payment requests
     }
   end
 end

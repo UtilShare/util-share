@@ -69,6 +69,12 @@ defmodule Utilshare.Payment do
   end
 
   def get_payment_request!(id), do: Repo.get!(PaymentRequest, id)
+  def get_payment_requests_for_user(id) do
+    %PaymentRequest{}
+    |> preload([:expense_instance, :requester, :requestee])
+    |> where([r],r.requestee_id == ^id)
+    |> Repo.all
+  end
 
   def create_payment_request(attrs \\ %{}) do
     %PaymentRequest{}
