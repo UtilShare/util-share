@@ -9,8 +9,6 @@ defmodule Utilshare.Accounts.Roommate do
     belongs_to(:user, Utilshare.Accounts.User)
     # field :household_id, :id
     belongs_to(:household, Utilshare.Accounts.Household)
-
-    timestamps()
   end
 
   @doc false

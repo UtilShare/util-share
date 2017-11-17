@@ -2,6 +2,7 @@ defmodule UtilshareWeb.UserView do
   use UtilshareWeb, :view
   alias UtilshareWeb.UserView
   alias UtilshareWeb.HouseholdView
+  alias Utilshare.Repo
 
   def render("index.json", %{users: users}) do
     render_many(users, UserView, "user.json")
@@ -12,6 +13,7 @@ defmodule UtilshareWeb.UserView do
   end
 
   def render("user.json", %{user: user}) do
+    user = Repo.preload(user, :households)
     %{id: user.id,
       first: user.first,
       last: user.last,
