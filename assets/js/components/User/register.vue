@@ -1,6 +1,5 @@
 <template>
     <div class="register">
-      <h2>Register</h2>
       <form @submit.prevent="createUser" class="form-control">
         <label for="email">Email:</label>
         <input id="email" v-model.trim="email" class="form-control"/>
@@ -59,6 +58,7 @@ export default {
         .post(`${this.api}/users`, model)
         .then(response => {
           console.log(response.data);
+          this.$emit("registered", { email: this.email });
         })
         .catch(reason => console.log(reason));
     }

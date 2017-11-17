@@ -1,17 +1,46 @@
 <template>
   <div class="app-container">
-    <h1>Hello, from Vue!</h1>
-    <ul>
-      <li><router-link to="/user/register">Register</router-link></li>
-      <li><router-link to="/user/login">Login</router-link></li>
-      <li><router-link to="/household/create">Create Household</router-link></li>
-    </ul>
+    <header class="header pt-5">
+  <nav class="nav navbar navbar-dark bg-info navbar-expand-md fixed-top">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse not-full-basis" id="main-navbar">
+      <ul class="navbar-nav mr-auto text-center">
+        <li class="nav-item">
+          <a class="nav-link active" href="/">
+            Dashboard
+          </a>
+        </li>
+      </ul>
+    </div>
+    <button v-if="token" type="button" class="btn btn-danger ml-2" @click.prevent="logout">
+      Logout
+    </button>
+  </nav>
+</header>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+
 export default {
-  name: 'app'
-}
+  name: "app",
+  computed: {
+    token() {
+      return this.$store.getters.auth;
+    }
+  },
+  methods: {
+    logOut: function() {
+      //TODO: handle logout
+    }
+  },
+  mounted: function() {
+    if (!this.token) {
+      this.$router.push("/user/landing");
+    }
+  }
+};
 </script>
