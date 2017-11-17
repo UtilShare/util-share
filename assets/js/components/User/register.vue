@@ -34,10 +34,12 @@
 </template>
 <script>
 import axios from "axios";
+import ApiMixin from "../../mixins/Api"
 
 export default {
   name: "register",
-  inject: ["api"],
+  mixins: [ApiMixin],
+
   methods: {
     createUser: function() {
       let model = {
@@ -56,9 +58,9 @@ export default {
       };
       this.sendRequest('users', POST, model)
         .then(response => {
-          console.log(response.data);
           this.$emit("registered", { email: this.email });
         })
+        .catch(this.alertErrors)
     }
   }
 };

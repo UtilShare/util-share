@@ -21,7 +21,7 @@
     </header>
 
     <div class="alert-container">
-      <alert :alert="alert" v-for="alert in alerts"/>
+      <alert :alert="alert" v-for="alert in alerts" :key="alert.id"/>
     </div>
 
     <router-view class="app-content"></router-view>

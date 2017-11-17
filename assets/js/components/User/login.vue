@@ -19,7 +19,6 @@ import { SET_AUTH, SET_USER, ADD_ALERT } from "../../store/mutation-types";
 
 export default {
   name: "login",
-  inject: ["api"],
   props: ['email'],
   mixins: [ApiMixin],
 
@@ -31,12 +30,13 @@ export default {
 
   methods: {
     submitLogin() {
-      this.sendRequest('sessions', POST, { login: this.login })
+      this.sendRequest('sessions', 'POST', { login: this.login })
         .then(response => {
           this.$store.commit(SET_AUTH, { auth: response.data.jwt });
           this.$store.commit(SET_USER, { user: response.data.user })
           this.$emit('logged-in');
         })
+        .catch(this.alertErrors)
     }
   }
 };
