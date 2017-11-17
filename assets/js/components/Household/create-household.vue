@@ -26,7 +26,7 @@ export default {
   mixins: [ApiMixin],
   data() {
     return {
-      roommates: [],
+      roommates: [this.$store.state.user.email],
       search: ""
     };
   },
@@ -37,9 +37,9 @@ export default {
     },
 
     createHousehold() {
-      sendRequest('households', 'POST', { household: { name: this.name } })
+      this.sendRequest('households', 'POST', { household: { name: this.name } })
         .then(response => {
-          sendRequest(
+          this.sendRequest(
             `households/${response.data.id}`, 'PATCH', {
               user_emails: this.roommates
             })
