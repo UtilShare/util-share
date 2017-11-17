@@ -1,7 +1,7 @@
 <template>
   <div class="create-expense">
     <form @submit.prevent="createExpense" class="form-control">
-      <label for="expense_name">Expense Name</label>
+      <label for="expense_name">Expense name</label>
       <input id="expense_name" class="form-control" v-model="expense.name">
 
       <br>
@@ -34,10 +34,7 @@ export default {
 
   computed: {
     households() {
-      return [
-        { id: 1, name: 'South End Apartment' },
-        { id: 2, name: 'Belize Timeshare' }
-      ]
+      return this.$store.state.user.households
     }
   },
 
