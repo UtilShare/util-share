@@ -16,7 +16,6 @@ defmodule UtilshareWeb.SessionController do
       first: user.first,
       last: user.last 
     }
-    IO.inspect userForToken
 
     token = Phoenix.Token.sign(UtilshareWeb.Endpoint, Config.jwt_hash, userForToken)
     conn

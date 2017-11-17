@@ -7,13 +7,9 @@ defmodule Utilshare.Payment.PaymentRequest do
   schema "payment_requests" do
     field :percent, :integer
     field :transaction_id, :string
-    # belongs_to(:expense, Utilshare.Payment.)
-    # field :expense_instance, :id
     belongs_to(:expense_instance, Utilshare.Payment.ExpenseInstance)
     belongs_to(:requester, Utilshare.Accounts.User)
     belongs_to(:requestee, Utilshare.Accounts.User)
-    #field :requester, :id
-    # field :requestee, :id
     field :paid_at, :utc_datetime
 
     timestamps()
