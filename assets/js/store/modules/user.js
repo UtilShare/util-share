@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import * as types from '../mutation-types'
 
 const state = {
@@ -5,6 +6,7 @@ const state = {
     first: '',
     last: '',
     email: '',
+    households: []
 }
 
 // getters
@@ -22,6 +24,9 @@ const mutations = {
         state.auth = auth
     },
 
+  [types.SET_USER](state, { user }) {
+    state = _.merge(state, user)
+  }
 }
 
 export default {
