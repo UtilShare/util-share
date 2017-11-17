@@ -19,7 +19,6 @@ const actions = {
 // mutations
 const mutations = {
     [types.SET_AUTH](state, { auth }) {
-        debugger;
         state.auth = auth
     },
 

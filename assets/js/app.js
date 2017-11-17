@@ -8,6 +8,7 @@ import App from './components/app.vue';
 import Register from './components/User/register';
 import Login from './components/User/login';
 import Landing from './components/User/landing';
+import Dashboard from './components/Dashboard/dashboard';
 import CreateHousehold from "./components/Household/create-household";
 import ExpenseList from './components/Expense/list';
 import store from './store';
@@ -17,7 +18,8 @@ Vue.use(VueRouter);
 const routes = [
   { path: '/user/landing', component: Landing, },
   { path: '/household/create', component: CreateHousehold },
-  { path: '/expenses', component: ExpenseList }
+  { path: '/expenses', component: ExpenseList },
+  { path: '/dashboard', component: Dashboard }
 ];
 
 const router = new VueRouter({

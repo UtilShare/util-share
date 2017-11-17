@@ -36,6 +36,7 @@ export default {
       this.register = false;
     },
     loggedIn: function() {
+      this.$router.push('/dashboard');
       //Redirect to the dashboard
     }
   },
