@@ -15,6 +15,10 @@ const mutations = {
       if (e.id === expense.id) return expense
       return e
     })
+  },
+
+  [types.ADD_EXPENSES](state, {expenses}) {
+    expenses.forEach(e => state.push(e))
   }
 }
 

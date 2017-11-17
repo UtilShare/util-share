@@ -30,12 +30,13 @@ export default {
     };
   },
   methods: {
-    registered: function(model) {
+    registered(model) {
       this.preloadEmail = model.email;
       this.alertText = "Account Created!"
       this.register = false;
     },
-    loggedIn: function() {
+
+    loggedIn() {
       this.$router.push('/dashboard');
       //Redirect to the dashboard
     }

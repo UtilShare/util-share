@@ -6,8 +6,16 @@ defmodule UtilshareWeb.ExpenseController do
 
     alias Utilshare.Payment
     alias Utilshare.Payment.Expense
+    alias Utilshare.Repo
+    alias Utilshare.Accounts
 
     action_fallback UtilshareWeb.FallbackController
+
+    def index(conn, _params) do
+      user = Accounts.get_user!(conn.assigns.auth.id)
+      user = Repo.preload(user, :expenses)
+      render(conn, "index.json", expenses: user.expenses)
+    end
 
     def show(conn, %{"id" => id}) do
         expense = Payment.get_expense!(id)

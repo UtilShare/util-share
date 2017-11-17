@@ -33,6 +33,7 @@ defmodule UtilshareWeb.Router do
 
     get "/expenses/:id", ExpenseController, :show
     post "/expenses", ExpenseController, :create
+    get "/expenses", ExpenseController, :index
 
     get "/expense_instances/:id", ExpenseInstanceController, :show
     post "/expense_instances", ExpenseInstanceController, :create

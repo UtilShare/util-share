@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { ADD_EXPENSES } from "../../store/mutation-types"
 import ApiMixin from "../../mixins/Api";
 
 export default {
@@ -50,7 +51,10 @@ export default {
   methods: {
     createExpense() {
       this.sendRequest('expenses', 'POST', { expense: this.expense })
-        .then(response => console.log(response))
+        .then(response => {
+          this.$store.commit(ADD_EXPENSES, { expenses: [response.data] })
+          this.$router.push('/expenses')
+        })
         .catch(reason => console.log(reason))
     }
   }
