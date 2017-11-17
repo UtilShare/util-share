@@ -1,7 +1,7 @@
 <template>
   <div class="expenses-container">
-    <h3>Expenses</h3>
-
+    <h3>Expenses</h3> 
+    <button class="btn btn-link">Create New Expense</button>
     <div class="expense-list">
       <expense :key="expense.id" :expense="expense" v-for="expense in expenses"/>
     </div>
