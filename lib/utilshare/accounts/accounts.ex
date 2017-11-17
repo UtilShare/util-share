@@ -50,14 +50,6 @@ defmodule Utilshare.Accounts do
     Repo.all(Household)
   end
 
-  def get_households_for_user(id) do
-    query = from h in Utilshare.Accounts.Household,
-            join: r in Utilshare.Accounts.Roommate, on: r.household_id == h.id,
-            where: r.user_id == ^id
-    Repo.all(query)
-  end
-
-
   def get_household!(id), do: Repo.get!(Household, id)
 
   def create_household(attrs \\ %{}) do

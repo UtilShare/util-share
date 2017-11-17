@@ -18,14 +18,14 @@
     </div>
 </template>
 <script>
-import axios from "axios";
+import ApiMixin from "../../mixins/Api";
 
 export default {
   name: "household",
-  inject: ["api"],
-  data: function() {
+  mixins: [ApiMixin],
+  data() {
     return {
-      roommates: [],
+      roommates: [this.$store.state.user.email],
       search: ""
     };
   },
@@ -34,28 +34,14 @@ export default {
       this.roommates.push(this.search);
       this.search = "";
     },
-    createHousehold: function() {
-      let config = {
-        headers: { Authorization: `Bearer ${this.$store.getters.auth}` }
-      };
-      axios
-        .post(
-          `${this.api}/households`,
-          {
-            household: {
-              name: this.name
-            }
-          },
-          config
-        )
+
+    createHousehold() {
+      this.sendRequest('households', 'POST', { household: { name: this.name } })
         .then(response => {
-          axios.patch(
-            `${this.api}/households/${response.data.id}`,
-            {
+          this.sendRequest(
+            `households/${response.data.id}`, 'PATCH', {
               user_emails: this.roommates
-            },
-            config
-          );
+            })
         })
         .catch(reason => console.log(reason));
     }

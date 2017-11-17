@@ -18,7 +18,7 @@ defmodule UtilshareWeb.HouseholdController do
       |> render("show.json", household: household)
     end
   end
-  
+
   def add_users(conn, %{"id" => id,"user_emails" => users}) do
     users = [conn.assigns.auth.email | users]
     Accounts.add_roommates_to_household(id, users)

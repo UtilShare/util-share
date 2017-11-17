@@ -1,11 +1,12 @@
 <template>
     <div class="login">
-      <form class="form-control" @submit.prevent="login">
+      <form class="form-control" @submit.prevent="submitLogin">
         <label for="email">Email:</label>
-        <input class="form-control" id="email" v-model="email"/>
+        <input class="form-control" id="email" v-model="login.email"/>
+
         <label for="password">Password:</label>
         <input class="form-control" type="password" id="password" v-model="password"/>
-        <input type="submit" value="Register" class="btn btn-primary mt-2">
+        <input type="submit" value="Sign in" class="btn btn-primary mt-2">
       </form>
     </div>
 </template>
@@ -17,10 +18,17 @@ export default {
   name: "login",
   inject: ["api"],
   props: ['email'],
+
+  data() {
+    return {
+      login: { email: this.email }
+    }
+  },
+
   methods: {
-    login: function() {
+    submitLogin() {
       axios
-        .post(`${this.api}/sessions`, { login: { email: this.email } })
+        .post(`${this.api}/sessions`, { login: this.login })
         .then(response => {
           this.$store.commit(SET_AUTH, { auth: response.data.jwt });
           this.$store.commit(SET_USER, { user: response.data.user })

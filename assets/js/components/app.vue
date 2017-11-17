@@ -18,8 +18,8 @@
           Logout
         </button>
       </nav>
-  </header>
-    <router-view></router-view>
+    </header>
+    <router-view class="app-content"></router-view>
   </div>
 </template>
 
