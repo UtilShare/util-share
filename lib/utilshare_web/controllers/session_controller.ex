@@ -18,7 +18,7 @@ defmodule UtilshareWeb.SessionController do
         last: user.last 
       }
 
-      token = Phoenix.Token.sign(UtilshareWeb.Endpoint, Config.jwt_hash, userForToken)
+      token = Phoenix.Token.sign(UtilshareWeb.Endpoint, Config.jwt_hash, user_for_token)
       conn
       |> put_status(201)
       |> render("success.json", jwt: token, user: user)
