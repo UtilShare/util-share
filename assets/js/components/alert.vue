@@ -10,7 +10,7 @@ export default {
 
   computed: {
     alertClass() {
-      return `alert-${alert.type}`
+      return `alert-${this.alert.type}`
     }
   }
 }

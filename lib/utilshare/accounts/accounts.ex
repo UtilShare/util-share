@@ -14,11 +14,11 @@ defmodule Utilshare.Accounts do
 
   def get_user!(id), do: Repo.get!(User, id)
 
-  
+
   def get_user_by_email(email) do
     from(s in User, where: s.email == ^email)
     |> preload(:expenses)
-    |> Repo.one!
+    |> Repo.one
   end
 
   def create_user(attrs \\ %{}) do

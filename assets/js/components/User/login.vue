@@ -10,9 +10,10 @@
       </form>
     </div>
 </template>
+
 <script>
 import axios from "axios";
-import { SET_AUTH, SET_USER } from "../../store/mutation-types";
+import { SET_AUTH, SET_USER, ADD_ALERT } from "../../store/mutation-types";
 
 export default {
   name: "login",
@@ -34,7 +35,14 @@ export default {
           this.$store.commit(SET_USER, { user: response.data.user })
           this.$emit('logged-in');
         })
-        .catch(reason => console.log(reason));
+        .catch(reason => {
+          if (reason.response.data.error) {
+            this.$store.commit(ADD_ALERT, { alert: {
+              message: reason.response.data.error,
+              type: 'danger'
+            }})
+          }
+        });
     }
   }
 };

@@ -17,18 +17,21 @@
     </div>
   </div>
 </template>
+
 <script>
 import Register from "./register";
 import Login from "./login";
 export default {
   name: "landing",
-  data: () => {
+
+  data() {
     return {
       register: false,
       alertText: "",
       preloadEmail: ""
     };
   },
+
   methods: {
     registered(model) {
       this.preloadEmail = model.email;

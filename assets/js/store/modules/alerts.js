@@ -1,6 +1,6 @@
 import * as types from '../mutation-types'
 
-const state = {}
+const state = []
 
 const getters = {}
 
@@ -8,7 +8,9 @@ const actions = {}
 
 const mutations = {
   [types.ADD_ALERT](state, { alert }) {
-    state.alerts = [alert, ...state.alerts]
+    state.push(alert)
+    console.log(state)
+
     if (alert.duration) {
       setTimeout(duration * 1000, () => {
         index = state.alerts.indexOf(alert)

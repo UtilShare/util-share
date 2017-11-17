@@ -39,6 +39,10 @@ export default {
   computed: {
     token() {
       return this.$store.getters.auth;
+    },
+
+    alerts() {
+      return this.$store.state.alerts
     }
   },
 

@@ -19,6 +19,6 @@ defmodule UtilshareWeb.SessionView do
   end
 
   def render("error.json", %{error: reason}) do
-    %{error: reason.id}
+    %{error: reason}
   end
 end
