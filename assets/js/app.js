@@ -18,7 +18,7 @@ Vue.use(VueRouter);
 
 const routes = [
   { path: '/user/landing', component: Landing, },
-  { path: '/household/create', component: CreateHousehold },
+  { path: '/households/new', component: CreateHousehold },
   { path: '/expenses', component: ExpenseList },
   { path: '/dashboard', component: Dashboard },
   { path: '/expenses/new', component: CreateExpense }

@@ -1,6 +1,6 @@
 <template>
     <div class="login">
-      <form class="form-control" @submit.prevent="login">
+      <form class="form-control" @submit.prevent="submitLogin">
         <label for="email">Email:</label>
         <input class="form-control" id="email" v-model="login.email"/>
 
@@ -26,7 +26,7 @@ export default {
   },
 
   methods: {
-    login() {
+    submitLogin() {
       axios
         .post(`${this.api}/sessions`, { login: this.login })
         .then(response => {
