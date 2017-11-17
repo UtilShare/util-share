@@ -1,10 +1,12 @@
 <template>
     <div class="login">
-        <label>Email:</label>
-        <input v-model="email"/>
-        <button @click.prevent="login">Login</button>
-        <label>AuthToken:</label>
-        <label>{{token}}</label>
+      <form class="form-control" @submit.prevent="login">
+        <label for="email">Email:</label>
+        <input class="form-control" id="email" v-model="email"/>
+        <label for="password">Password:</label>
+        <input class="form-control" type="password" id="password" v-model="password"/>
+        <input type="submit" value="Register" class="btn btn-primary mt-2">
+      </form>
     </div>
 </template>
 <script>
@@ -14,17 +16,14 @@ import { SET_AUTH } from "../../store/mutation-types";
 export default {
   name: "login",
   inject: ["api"],
-  computed: {
-    token() {
-      return this.$store.getters.auth;
-    }
-  },
+  props: ['email'],
   methods: {
     login: function() {
       axios
         .post(`${this.api}/sessions`, { login: { email: this.email } })
         .then(response => {
           this.$store.commit(SET_AUTH, { auth: response.data.jwt });
+          this.$emit('logged-in');
         })
         .catch(reason => console.log(reason));
     }
