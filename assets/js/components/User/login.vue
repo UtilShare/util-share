@@ -41,6 +41,13 @@ export default {
               message: reason.response.data.error,
               type: 'danger'
             }})
+          } else if (reason.response.data.errors) {
+            reason.response.errors.forEach(error => {
+              this.$store.commit(ADD_ALERT, { alert: {
+                message: reason.response.data.error,
+                type: 'danger'
+              }})
+            })
           }
         });
     }

@@ -9,7 +9,6 @@ const actions = {}
 const mutations = {
   [types.ADD_ALERT](state, { alert }) {
     state.push(alert)
-    console.log(state)
 
     if (alert.duration) {
       setTimeout(duration * 1000, () => {
