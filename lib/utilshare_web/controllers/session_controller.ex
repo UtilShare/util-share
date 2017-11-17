@@ -12,6 +12,6 @@ defmodule UtilshareWeb.SessionController do
     token = Phoenix.Token.sign(UtilshareWeb.Endpoint, Config.jwt_hash, Map.from_struct(user))
     conn
     |> put_status(201)
-    |> render("success.json", token, user)
+    |> render("success.json", jwt: token, user: user)
   end
 end

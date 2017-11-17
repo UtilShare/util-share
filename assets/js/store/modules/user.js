@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import * as types from '../mutation-types'
 
 const state = {
@@ -25,7 +26,7 @@ const mutations = {
     },
 
   [types.SET_USER](state, { user }) {
-    state = { state, ...user }
+    state = _.merge(state, user)
   }
 }
 

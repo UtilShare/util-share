@@ -11,12 +11,13 @@ defmodule UtilshareWeb.SessionView do
     %{data: render_one(session, SessionView, "session.json")}
   end
 
-  def render("success.json", jwt, user) do
+  def render("success.json", %{jwt: jwt, user: user}) do
     %{
       jwt: jwt,
       user: UserView.render("user.json", user: user)
     }
   end
+
   def render("error.json", %{error: reason}) do
     %{error: reason.id}
   end
