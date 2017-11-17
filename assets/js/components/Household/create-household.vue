@@ -18,7 +18,6 @@
     </div>
 </template>
 <script>
-import axios from "axios";
 import ApiMixin from "../../mixins/Api";
 
 export default {

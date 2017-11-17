@@ -9,17 +9,21 @@ defmodule UtilshareWeb.UserView do
   end
 
   def render("show.json", %{user: user}) do
-    render_one(user, UserView, "user.json")
+    base = render_one(user, UserView, "user.json")
+
+    user = Repo.preload(user, :households)
+    households = HouseholdView.render("index.json", households: user.households)
+
+    Map.put(base, :households, households)
   end
 
   def render("user.json", %{user: user}) do
-    user = Repo.preload(user, :households)
-    %{id: user.id,
+    %{
+      id: user.id,
       first: user.first,
       last: user.last,
       email: user.email,
-      dwolla_id: user.dwolla_id,
-      households: HouseholdView.render("index.json", households: user.households)
+      dwolla_id: user.dwolla_id
     }
   end
 end

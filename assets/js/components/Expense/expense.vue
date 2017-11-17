@@ -3,7 +3,7 @@
     <div class="card-body">
       <h4 class="card-title">{{ expense.name }}</h4>
       <h6 class="card-subtitle mb-2 text-muted">{{ expense.household.name }}</h6>
-      <p>Owner: {{ expense.owner.name }}</p>
+      <p>Owner: {{ expense.owner.first }} {{expense.owner.last}}</p>
 
       <form class="form-control" @submit.prevent="submitInstance" v-if="isCharging">
         <label :for="expense.id + '-amount'">Amount:</label>
@@ -16,7 +16,7 @@
         <div class="row expense-split" v-for="split in newInstance.splits">
           <div class="col-md-8">
             <label :for="expense.id + '-user-' + split.user.id + '-split'">
-              {{ split.user.name }}:
+              {{ split.user.first }} {{ split.user.last }}:
             </label>
           </div>
 

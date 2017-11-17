@@ -2,15 +2,17 @@ defmodule Utilshare.Payment.Expense do
   use Ecto.Schema
   import Ecto.Changeset
   alias Utilshare.Payment.Expense
+  alias Utilshare.Payment.ExpenseInstance
 
 
   schema "expenses" do
     field :name, :string
     field :desc, :string
+
     belongs_to(:household, Utilshare.Accounts.Household)
     belongs_to(:owner, Utilshare.Accounts.User)
-    # field :household_id, :id
-    # field :owner_id, :id
+
+    has_many :instances, ExpenseInstance, foreign_key: :expense_id
 
     timestamps()
   end

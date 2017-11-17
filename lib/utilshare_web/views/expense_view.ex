@@ -1,6 +1,10 @@
 defmodule UtilshareWeb.ExpenseView do
   use UtilshareWeb, :view
   alias UtilshareWeb.ExpenseView
+  alias UtilshareWeb.UserView
+  alias UtilshareWeb.HouseholdView
+  alias UtilshareWeb.ExpenseInstanceView
+  alias Utilshare.Repo
 
   def render("index.json", %{expenses: expenses}) do
     render_many(expenses, ExpenseView, "expense.json")
@@ -11,11 +15,16 @@ defmodule UtilshareWeb.ExpenseView do
   end
 
   def render("expense.json", %{expense: expense}) do
-    %{id: expense.id,
+    expense = Repo.preload(expense, :instances)
+    expense = Repo.preload(expense, :household)
+    expense = Repo.preload(expense, :owner)
+    %{
+      id: expense.id,
       desc: expense.desc,
       name: expense.name,
-      household: expense.household_id,
-      owner_id: expense.owner_id,
+      household: HouseholdView.render("show.json", household: expense.household),
+      owner: UserView.render("user.json", user: expense.owner),
+      instances: ExpenseInstanceView.render("index.json", expense_instances: expense.instances)
     }
   end
 end

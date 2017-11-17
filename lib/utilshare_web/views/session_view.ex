@@ -14,7 +14,7 @@ defmodule UtilshareWeb.SessionView do
   def render("success.json", %{jwt: jwt, user: user}) do
     %{
       jwt: jwt,
-      user: UserView.render("user.json", user: user)
+      user: UserView.render("show.json", user: user)
     }
   end
 

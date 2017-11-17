@@ -6,6 +6,11 @@
 
       <br>
 
+      <label for="expense_name">Description</label>
+      <input id="expense_name" class="form-control" v-model="expense.desc">
+
+      <br>
+
       <label for="expense_household_id">Household</label>
       <select class="form-control" v-model="expense.household_id">
         <option v-for="household in households" :value="household.id">
@@ -20,13 +25,17 @@
 </template>
 
 <script>
+import ApiMixin from "../../mixins/Api";
+
 export default {
   name: 'create-expense',
+  mixins: [ApiMixin],
   data() {
     return {
       expense: {
         name: '',
-        owner_id: 1,
+        desc: '',
+        owner_id: this.$store.state.user.id,
         household_id: null
       }
     }
@@ -40,7 +49,7 @@ export default {
 
   methods: {
     createExpense() {
-      sendRequest('expenses', 'POST', this.expense)
+      this.sendRequest('expenses', 'POST', { expense: this.expense })
         .then(response => console.log(response))
         .catch(reason => console.log(reason))
     }
