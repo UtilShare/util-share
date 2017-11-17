@@ -9,7 +9,16 @@ defmodule UtilshareWeb.SessionController do
 
   def create(conn, %{"login" => session_params}) do
     user = Utilshare.Accounts.get_user_by_email(session_params["email"])
-    token = Phoenix.Token.sign(UtilshareWeb.Endpoint, Config.jwt_hash, Map.from_struct(user))
+    userForToken = %{
+      id: user.id,
+      dwolla_id: user.dwolla_id,
+      email: user.email,
+      first: user.first,
+      last: user.last 
+    }
+    IO.inspect userForToken
+
+    token = Phoenix.Token.sign(UtilshareWeb.Endpoint, Config.jwt_hash, userForToken)
     conn
     |> put_status(201)
     |> render("success.json", jwt: token, user: user)

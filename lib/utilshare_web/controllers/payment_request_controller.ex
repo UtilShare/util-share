@@ -1,4 +1,4 @@
-defmodule UtilshareWeb.ExpenseController do
+defmodule UtilshareWeb.PaymentRequestController do
     use UtilshareWeb, :controller
     import UtilshareWeb.Plugs
   
@@ -12,7 +12,7 @@ defmodule UtilshareWeb.ExpenseController do
     #Get requests for user
     def show(conn, %{"id" => id}) do
         payment_requests = Payment.get_payment_requests_for_user(id)
-        render(conn, "index.json", payment_requests: expense)
+        render(conn, "index.json", payment_requests: payment_requests)
     end
 
 end
