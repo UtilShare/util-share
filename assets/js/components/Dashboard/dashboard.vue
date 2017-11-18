@@ -1,5 +1,5 @@
 <template>
-    <div class="dashboard d-flex flex-col">
+    <div class="dashboard d-flex flex-column">
       <expenses-list></expenses-list>
       <payment-request-list></payment-request-list>
     </div>

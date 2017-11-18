@@ -9,10 +9,10 @@ defmodule UtilshareWeb.ExpenseInstanceController do
   
     action_fallback UtilshareWeb.FallbackController
   
-    # def show(conn, %{"id" => id}) do
-    #     expense_instance = Payment.get_expense_instance!(id)
-    #     render(conn, "show.json", expense_instance: expense_instance)
-    # end
+    def show(conn, %{"id" => id}) do
+        expense_instance = Payment.get_expense_instance!(id)
+        render(conn, "show.json", expense_instance: expense_instance)
+    end
   
     def create(conn, %{"expense_instance" => expense_instance_params}) do
       with {:ok, %ExpenseInstance{} = expense_instance} <- Payment.create_expense_instance(expense_instance_params) do
