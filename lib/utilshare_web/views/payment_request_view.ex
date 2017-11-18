@@ -20,4 +20,10 @@ defmodule UtilshareWeb.PaymentRequestView do
       paid_at: payment_request.paid_at
     }
   end
+
+  def render("simple.json", %{payment_requests: payment_requests})do
+    payment_requests
+    |> Enum.map(fn req -> %{complete: not(is_nil(req.paid_at))} end)
+  end
+
 end

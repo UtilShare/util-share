@@ -30,7 +30,10 @@ export default {
     },
 
     total() {
-      return this.instance.splits.length
+      if(this.instance.splits){
+        return this.instance.splits.length
+      }
+      return 0;
     },
 
     classes() {

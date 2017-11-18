@@ -15,7 +15,7 @@ defmodule UtilshareWeb.ExpenseView do
   end
 
   def render("expense.json", %{expense: expense}) do
-    expense = Repo.preload(expense, :instances)
+    expense = Repo.preload(expense, [instances: :splits])
     expense = Repo.preload(expense, :household)
     expense = Repo.preload(expense, :owner)
     %{
