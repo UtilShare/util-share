@@ -71,7 +71,7 @@ defmodule Utilshare.Payment do
   def get_payment_request!(id), do: Repo.get!(PaymentRequest, id)
   def get_payment_requests_for_user(id) do
     PaymentRequest
-    |> preload([:expense_instance, :requestee])
+    |> preload([[expense_instance: :splits], :requestee])
     |> where([r], r.requestee_id == ^id)
     |> Repo.all
   end
