@@ -25,7 +25,7 @@ export default {
       let headers = {}
 
       if (this.$store.getters.auth)
-        headers = { Authoriazation: `Bearer ${this.$store.getters.auth}`  }
+        headers = { Authorization: `Bearer ${this.$store.getters.auth}`  }
 
       return axios({
         method: method,

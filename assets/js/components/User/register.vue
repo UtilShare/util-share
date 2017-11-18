@@ -41,7 +41,7 @@ export default {
   mixins: [ApiMixin],
 
   methods: {
-    createUser: function() {
+    createUser() {
       let model = {
         user: {
           first: this.first,
@@ -56,7 +56,7 @@ export default {
           ip: "10.10.10.10"
         }
       };
-      this.sendRequest('users', POST, model)
+      this.sendRequest('users', 'POST', model)
         .then(response => {
           this.$emit("registered", { email: this.email });
         })

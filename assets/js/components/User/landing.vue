@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div v-if="alertText" class="alert alert-primary" role="alert">
-      {{alertText}}
-    </div>
     <div class="modal-header">  
       <h2 v-if="!register" class="modal-title">Login</h2>
       <h2 v-if="register" class="modal-title">Register</h2>
@@ -21,13 +18,15 @@
 <script>
 import Register from "./register";
 import Login from "./login";
+import { ADD_ALERT } from "../../store/mutation-types"
+
+
 export default {
   name: "landing",
 
   data() {
     return {
       register: false,
-      alertText: "",
       preloadEmail: ""
     };
   },
@@ -35,8 +34,13 @@ export default {
   methods: {
     registered(model) {
       this.preloadEmail = model.email;
-      this.alertText = "Account Created!"
       this.register = false;
+      this.$store.commit(ADD_ALERT, {
+        alert: {
+          message: 'Account created!',
+          type: 'info'
+        }
+      })
     },
 
     loggedIn() {
