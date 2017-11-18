@@ -16,7 +16,7 @@ defmodule UtilshareWeb.PaymentRequestView do
       id: payment_request.id,
       percent: payment_request.percent,
       requestee: UtilshareWeb.UserView.render("user.json",%{user: payment_request.requestee}),
-      expense_instance: UtilshareWeb.ExpenseInstanceView.render("show.json", %{expense_instance: payment_request.expense_instance}),
+      expense_instance: UtilshareWeb.ExpenseInstanceView.render("with_expense.json", %{expense_instance: payment_request.expense_instance}),
       paid_at: payment_request.paid_at
     }
   end
