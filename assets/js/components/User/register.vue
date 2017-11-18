@@ -34,12 +34,14 @@
 </template>
 <script>
 import axios from "axios";
+import ApiMixin from "../../mixins/Api"
 
 export default {
   name: "register",
-  inject: ["api"],
+  mixins: [ApiMixin],
+
   methods: {
-    createUser: function() {
+    createUser() {
       let model = {
         user: {
           first: this.first,
@@ -54,13 +56,11 @@ export default {
           ip: "10.10.10.10"
         }
       };
-      axios
-        .post(`${this.api}/users`, model)
+      this.sendRequest('users', 'POST', model)
         .then(response => {
-          console.log(response.data);
           this.$emit("registered", { email: this.email });
         })
-        .catch(reason => console.log(reason));
+        .catch(this.alertErrors)
     }
   }
 };

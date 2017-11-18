@@ -19,25 +19,40 @@
         </button>
       </nav>
     </header>
+
+    <div class="alert-container">
+      <alert :alert="alert" v-for="alert in alerts" :key="alert.id"/>
+    </div>
+
     <router-view class="app-content"></router-view>
   </div>
 </template>
 
 <script>
+import Alert from "./alert"
 
 export default {
   name: "app",
+  components: {
+    'alert': Alert
+  },
   computed: {
     token() {
       return this.$store.getters.auth;
+    },
+
+    alerts() {
+      return this.$store.state.alerts
     }
   },
+
   methods: {
-    logOut: function() {
+    logOut() {
       //TODO: handle logout
     }
   },
-  mounted: function() {
+
+  mounted() {
     if (!this.token) {
       this.$router.push("/user/landing");
     }

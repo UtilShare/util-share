@@ -10,14 +10,17 @@
       </form>
     </div>
 </template>
+
 <script>
 import axios from "axios";
-import { SET_AUTH, SET_USER } from "../../store/mutation-types";
+
+import ApiMixin from "../../mixins/Api"
+import { SET_AUTH, SET_USER, ADD_ALERT } from "../../store/mutation-types";
 
 export default {
   name: "login",
-  inject: ["api"],
   props: ['email'],
+  mixins: [ApiMixin],
 
   data() {
     return {
@@ -27,14 +30,13 @@ export default {
 
   methods: {
     submitLogin() {
-      axios
-        .post(`${this.api}/sessions`, { login: this.login })
+      this.sendRequest('sessions', 'POST', { login: this.login })
         .then(response => {
           this.$store.commit(SET_AUTH, { auth: response.data.jwt });
           this.$store.commit(SET_USER, { user: response.data.user })
           this.$emit('logged-in');
         })
-        .catch(reason => console.log(reason));
+        .catch(this.alertErrors)
     }
   }
 };

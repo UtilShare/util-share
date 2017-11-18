@@ -30,6 +30,7 @@ export default {
     if (!this.$store.state.expenses || this.$store.state.expenses.length == 0) {
       this.sendRequest('expenses', 'GET')
         .then(response => this.$store.commit(ADD_EXPENSES, { expenses: response.data }))
+        .catch(this.alertErrors)
     }
   }
 }
