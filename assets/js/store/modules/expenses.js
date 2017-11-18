@@ -19,6 +19,10 @@ const mutations = {
 
   [types.ADD_EXPENSES](state, {expenses}) {
     expenses.forEach(e => state.push(e))
+  },
+
+  [types.LOGOUT](state, opts={}) {
+    state.splice(0, state.length)
   }
 }
 

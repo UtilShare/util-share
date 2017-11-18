@@ -14,7 +14,7 @@
             </li>
           </ul>
         </div>
-        <button v-if="token" type="button" class="btn btn-danger ml-2" @click.prevent="logout">
+        <button v-if="token" type="button" class="btn btn-danger ml-2" @click.prevent="logOut">
           Logout
         </button>
       </nav>
@@ -30,6 +30,7 @@
 
 <script>
 import Alert from "./alert"
+import { LOGOUT } from "../store/mutation-types"
 
 export default {
   name: "app",
@@ -48,7 +49,8 @@ export default {
 
   methods: {
     logOut() {
-      //TODO: handle logout
+      this.$store.commit(LOGOUT, {})
+      this.$router.push("/user/landing");
     }
   },
 

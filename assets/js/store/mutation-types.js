@@ -5,3 +5,5 @@ export const ADD_EXPENSE_INSTANCE = "ADD_EXPENSE_INSTANCE";
 export const ADD_EXPENSES = "ADD_EXPENSES";
 
 export const ADD_ALERT = "ADD_ALERT";
+
+export const LOGOUT = "LOGOUT";
