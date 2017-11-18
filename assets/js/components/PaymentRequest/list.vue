@@ -1,9 +1,10 @@
 <template>
   <div class="list">
     <h2>Payment Requests</h2>
-    <div class="d-flex flex-row">
+    <div class="d-flex flex-row" v-if="orderedRequests.length">
       <request-row v-for="request in orderedRequests" :key="request.id" :request="request"></request-row>
     </div>
+    <p v-else class="text-muted">No payment requests</p>
   </div>
 </template>
 <script>

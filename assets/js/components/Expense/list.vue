@@ -1,10 +1,12 @@
 <template>
   <div class="expenses-container">
     <h3>Expenses</h3> 
-    <router-link to="expenses/new" class="btn btn-link">Create New Expense</router-link>
-    <div class="expense-list">
+    <router-link to="expenses/new" class="btn btn-secondary">Create New Expense</router-link>
+    <br><br>
+    <div class="expense-list" v-if="expenses.length">
       <expense :key="expense.id" :expense="expense" v-for="expense in expenses"/>
     </div>
+    <p v-else class="text-muted">No expenses owned by you</p>
   </div>
 </template>
 
