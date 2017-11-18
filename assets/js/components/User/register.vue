@@ -28,6 +28,12 @@
         <label for="ssn">SSN (last 4 only):</label>
         <input id="ssn" type="password" v-model.trim="ssn" maxlength="4" class="form-control"/>
 
+        <label for="password">Password:</label>
+        <input id="password" type="password" v-model="password" class="form-control"/>
+
+        <label for="password_confirmation">Password confirmations:</label>
+        <input id="password_confirmation" type="password" v-model="password_confirmation" class="form-control"/>
+
         <input type="submit" value="Register" class="btn btn-primary mt-2">
       </form>
     </div>
@@ -53,7 +59,9 @@ export default {
           zip: this.zip,
           dob: this.dob,
           ssn: this.ssn,
-          ip: "10.10.10.10"
+          ip: "10.10.10.10",
+          password: this.password,
+          password_confirmation: this.password_confirmation
         }
       };
       this.sendRequest('users', 'POST', model)
