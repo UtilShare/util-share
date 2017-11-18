@@ -38,30 +38,32 @@
 
       <br><br>
       <h6 class="card-subtitle mb-2">Instances</h6>
-      <instance-list v-if="expense.instances.length" :instances="expense.instances"/>
+      <instance-list v-if="expense.instances && expense.instances.length" :instances="expense.instances"/>
       <p v-else>No instances yet</p>
     </div>
   </div>
 </template>
 
 <script>
-import _ from 'lodash'
+import _ from "lodash";
 
 import { ADD_EXPENSE_INSTANCE } from "../../store/mutation-types";
-import ExpenseInstanceList from './instance-list'
+import ExpenseInstanceList from "./instance-list";
+import ApiMixin from "../../mixins/Api";
 
 export default {
-  'name': 'expense',
-  'props': ['expense'],
-  'components': {
-    'instance-list': ExpenseInstanceList
+  name: "expense",
+  props: ["expense"],
+  mixins: [ApiMixin],
+  components: {
+    "instance-list": ExpenseInstanceList
   },
 
   data() {
     return {
       isCharging: false,
       newInstance: this.generateDefaultInstance()
-    }
+    };
   },
 
   methods: {
@@ -70,9 +72,25 @@ export default {
     },
 
     submitInstance() {
-      // TODO: Submit this to an API once that's a thing
-      this.$store.commit(ADD_EXPENSE_INSTANCE, { expense: this.expense, instance: this.newInstance })
-      this.newInstance = this.generateDefaultInstance()
+      this.sendRequest("expense_instances", "POST", {
+        expense_instance: {
+          amount: this.newInstance.amount,
+          expense_id: this.expense.id,
+          splits: this.newInstance.splits.map(t => {
+            return {
+              percent: t.percent,
+              requestee_id: t.user.id,
+            }
+          })
+        }
+      }).then(result => {
+        debugger;
+      });
+      this.$store.commit(ADD_EXPENSE_INSTANCE, {
+        expense: this.expense,
+        instance: this.newInstance
+      });
+      this.newInstance = this.generateDefaultInstance();
       this.toggleCharging();
     },
 
@@ -83,14 +101,14 @@ export default {
       );
 
       let defaultSplits = _.map(usersForInstance, u => {
-        return { user: u, complete: false, percent: 0 }
-      })
+        return { user: u, complete: false, percent: 0 };
+      });
 
       return {
         splits: defaultSplits,
         amount: 0
-      }
+      };
     }
   }
-}
+};
 </script>
