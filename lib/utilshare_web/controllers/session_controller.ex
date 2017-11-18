@@ -1,17 +1,17 @@
 defmodule UtilshareWeb.SessionController do
   use UtilshareWeb, :controller
-  use Coherence.Config
 
   alias Utilshare.Accounts
   alias Utilshare.Accounts.Session
+  alias Utilshare.Config
 
   action_fallback UtilshareWeb.FallbackController
 
   def create(conn, %{"login" => session_params}) do
-    user_schema = Config.user_schema()
-    user = Utilshare.Accounts.get_user_by_email(session_params["email"])
+    user = Accounts.get_user_by_email(session_params["email"])
     password = session_params["password"]
-    if user && user_schema.checkpw(password, Map.get(user, Config.password_hash())) do
+
+    if user && Accounts.User.checkpw(password, user.password_hash) do
       user_for_token = %{
         id: user.id,
         dwolla_id: user.dwolla_id,

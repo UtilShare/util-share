@@ -5,7 +5,7 @@
         <input class="form-control" id="email" v-model="login.email"/>
 
         <label for="password">Password:</label>
-        <input class="form-control" type="password" id="password" v-model="password"/>
+        <input class="form-control" type="password" id="password" v-model="login.password"/>
         <input type="submit" value="Sign in" class="btn btn-primary mt-2">
       </form>
     </div>
@@ -24,7 +24,7 @@ export default {
 
   data() {
     return {
-      login: { email: this.email }
+      login: { email: this.email, password: this.password }
     }
   },
 
