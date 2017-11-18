@@ -20,7 +20,7 @@ defmodule Utilshare.Mixfile do
   def application do
     [
       mod: {Utilshare.Application, []},
-      extra_applications: [:logger, :runtime_tools, :httpoison]
+      extra_applications: [:logger, :runtime_tools, :httpoison, :coherence]
     ]
   end
 
@@ -45,6 +45,7 @@ defmodule Utilshare.Mixfile do
       {:httpoison, "~> 0.13"},
       {:poison, "~> 3.1"},
       {:decimal, "~> 1.0"},
+      {:coherence, "~> 0.4"}
     ]
   end
 
