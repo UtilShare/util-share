@@ -30,6 +30,10 @@ const mutations = {
     state = _.merge(state, user)
   },
 
+  [types.ADD_HOUSEHOLD](state, { household }) {
+    state.households.push(household)
+  },
+
   [types.LOGOUT](state, opts={}) {
     state.households = []
     for (let f in state) {

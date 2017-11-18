@@ -23,7 +23,8 @@
     </div>
 </template>
 <script>
-import ApiMixin from "../../mixins/Api";
+import ApiMixin from "../../mixins/Api"
+import { ADD_HOUSEHOLD, ADD_ALERT } from "../../store/mutation-types"
 
 export default {
   name: "household",
@@ -46,6 +47,13 @@ export default {
           this.sendRequest(
             `households/${response.data.id}`, 'PATCH', {
               user_emails: this.roommates
+            })
+            .then(response => {
+              this.$store.commit(ADD_ALERT, { alert: {
+                message: 'Household created!', type: 'info'
+              }})
+              this.$store.commit(ADD_HOUSEHOLD, { household: response.data })
+              this.$router.push('/dashboard')
             })
             .catch(this.alertErrors);
         })
