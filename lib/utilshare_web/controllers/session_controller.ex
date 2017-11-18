@@ -8,8 +8,10 @@ defmodule UtilshareWeb.SessionController do
   action_fallback UtilshareWeb.FallbackController
 
   def create(conn, %{"login" => session_params}) do
-    user = Utilshare.Accounts.get_user_by_email(session_params["email"])
-    if user do
+    user = Accounts.get_user_by_email(session_params["email"])
+    password = session_params["password"]
+
+    if user && Accounts.User.checkpw(password, user.password_hash) do
       user_for_token = %{
         id: user.id,
         dwolla_id: user.dwolla_id,

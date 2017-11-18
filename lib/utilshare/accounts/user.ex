@@ -1,6 +1,8 @@
 defmodule Utilshare.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  use Coherence.Schema
+
   alias Utilshare.Accounts.User
   alias Utilshare.Accounts.Roommate
 
@@ -9,6 +11,7 @@ defmodule Utilshare.Accounts.User do
     field :email, :string
     field :first, :string
     field :last, :string
+    coherence_schema()
 
     has_many :expenses, Utilshare.Payment.Expense, [foreign_key: :owner_id]
     has_many :household_memberships, Roommate, foreign_key: :user_id, on_delete: :delete_all
@@ -19,8 +22,9 @@ defmodule Utilshare.Accounts.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:first, :last, :email, :dwolla_id])
+    |> cast(attrs, [:first, :last, :email, :dwolla_id, :password, :password_confirmation])
     |> validate_required([:first, :last, :email, :dwolla_id])
+    |> validate_coherence(attrs)
   end
   #Expects string based dictionary
   def dwolla_user_verification(user) do
