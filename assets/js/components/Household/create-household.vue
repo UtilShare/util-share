@@ -43,7 +43,7 @@ export default {
               user_emails: this.roommates
             })
         })
-        .catch(reason => console.log(reason));
+        .catch(this.alertErrors);
     }
   }
 };

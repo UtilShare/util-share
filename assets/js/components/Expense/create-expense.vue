@@ -55,7 +55,7 @@ export default {
           this.$store.commit(ADD_EXPENSES, { expenses: [response.data] })
           this.$router.push('/expenses')
         })
-        .catch(reason => console.log(reason))
+        .catch(this.alertErrors)
     }
   }
 }
