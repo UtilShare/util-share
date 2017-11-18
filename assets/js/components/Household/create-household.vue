@@ -42,6 +42,7 @@ export default {
             `households/${response.data.id}`, 'PATCH', {
               user_emails: this.roommates
             })
+            .catch(this.alertErrors);
         })
         .catch(this.alertErrors);
     }
