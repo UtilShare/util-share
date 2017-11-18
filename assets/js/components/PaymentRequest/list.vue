@@ -27,7 +27,7 @@ export default {
     'request-row': RequestRow
   },
   mounted: function() {
-    this.sendRequest(`payment_requests/${this.$store.state.user.id}`, "GET").then(x=>{
+    this.sendRequest(`payment_requests`, "GET").then(x=>{
       this.requests = x.data;
     });
   }
