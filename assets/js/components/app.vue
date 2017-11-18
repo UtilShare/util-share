@@ -2,15 +2,21 @@
   <div class="app-container">
     <header class="header padTop">
       <nav class="nav navbar navbar-dark bg-info navbar-expand-md fixed-top">
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar">
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse not-full-basis" id="main-navbar">
           <ul class="navbar-nav mr-auto text-center">
             <li class="nav-item">
-              <a class="nav-link active" href="/">
-                Dashboard
-              </a>
+              <router-link class="nav-link" to="/dashboard">Dashboard</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/expenses">Expenses</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/households/new">New Household</router-link>
             </li>
           </ul>
         </div>
