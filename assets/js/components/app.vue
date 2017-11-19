@@ -35,21 +35,22 @@
 </template>
 
 <script>
+
 import Alert from "./alert"
 import { LOGOUT } from "../store/mutation-types"
+
 
 export default {
   name: "app",
   components: {
-    'alert': Alert
+    alert: Alert
   },
   computed: {
     token() {
       return this.$store.getters.auth;
     },
-
     alerts() {
-      return this.$store.state.alerts
+      return this.$store.state.alerts;
     }
   },
 
@@ -61,9 +62,6 @@ export default {
   },
 
   mounted() {
-    if (!this.token) {
-      this.$router.push("/user/landing");
-    }
   }
 };
 </script>

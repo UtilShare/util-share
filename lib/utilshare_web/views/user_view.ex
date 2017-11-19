@@ -23,7 +23,9 @@ defmodule UtilshareWeb.UserView do
       first: user.first,
       last: user.last,
       email: user.email,
-      dwolla_id: user.dwolla_id
+      dwolla_id: user.dwolla_id,
+      bank_id: user.bank_funding_source_id,
+      balance_id: user.balance_funding_source_id
     }
   end
 end

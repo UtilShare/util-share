@@ -1,6 +1,6 @@
 defmodule Utilshare.Accounts.Dwolla do
 alias Utilshare.Config, as: Config
-
+alias Utilshare.Accounts
   def authenticate_server() do
     body = {:form, 
     [
@@ -52,4 +52,36 @@ alias Utilshare.Config, as: Config
         IO.inspect(reason)
     end
   end
+  def fetch_funding_sources(user) do
+    headers = ["Authorization": "Bearer #{Config.token}",
+    "Content-Type": "application/vnd.dwolla.v1.hal+json",
+    "Accept": "application/vnd.dwolla.v1.hal+json"]
+
+    case HTTPoison.get("#{Config.api_url}/customers/#{user.dwolla_id}/funding-sources", headers) do
+      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
+        %{"_embedded" => sources} = Poison.decode!(body)
+        bank = Enum.find(sources["funding-sources"],nil, fn x -> x["type"] == "bank" end)["id"]
+        balance = Enum.find(sources["funding-sources"],nil, fn x -> x["type"] == "balance" end)["id"]
+        user = Accounts.get_user!(user.id)
+        {:ok, user} = Accounts.update_user(user, %{"balance_funding_source_id" => balance, "bank_funding_source_id" => bank})
+        user
+      {:error, %HTTPoison.Error{reason: reason}} ->
+        IO.inspect(reason)
+    end
+  end
+
+  def get_instant_account_verification_token(user) do
+    headers = ["Authorization": "Bearer #{Config.token}",
+               "Content-Type": "application/vnd.dwolla.v1.hal+json",
+               "Accept": "application/vnd.dwolla.v1.hal+json"]
+    case HTTPoison.post("#{Config.api_url}/customers/#{user.dwolla_id}/iav-token", "", headers) do
+      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
+        %{"token" => token} = Poison.decode!(body)
+        token
+      {:error, %HTTPoison.Error{reason: reason}} ->
+        IO.inspect(reason)
+    end
+
+  end
+
 end

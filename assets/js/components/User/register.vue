@@ -40,12 +40,12 @@
 </template>
 <script>
 import axios from "axios";
-import ApiMixin from "../../mixins/Api"
+import ApiMixin from "../../mixins/Api";
+import CreateFundingSource from "./create-funding-source";
 
 export default {
   name: "register",
   mixins: [ApiMixin],
-
   methods: {
     createUser() {
       let model = {
@@ -64,11 +64,11 @@ export default {
           password_confirmation: this.password_confirmation
         }
       };
-      this.sendRequest('users', 'POST', model)
+      this.sendRequest("users", "POST", model)
         .then(response => {
           this.$emit("registered", { email: this.email });
         })
-        .catch(this.alertErrors)
+        .catch(this.alertErrors);
     }
   }
 };

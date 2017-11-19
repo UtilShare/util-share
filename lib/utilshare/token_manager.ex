@@ -6,6 +6,7 @@ defmodule Utilshare.TokenManager do
     state0 = %{}
     if(Mix.env != :test) do
       auth = Utilshare.Accounts.Dwolla.authenticate_server()
+      IO.inspect auth
       Utilshare.TokenRefreshTask.start_link(auth["expires_in"])
       state0 = %{token: auth["access_token"]}
     end
