@@ -1,6 +1,8 @@
 defmodule Utilshare.Accounts.Dwolla do
 alias Utilshare.Config, as: Config
 alias Utilshare.Accounts
+alias Decimal, as: D
+
   def authenticate_server() do
     body = {:form, 
     [
@@ -82,6 +84,40 @@ alias Utilshare.Accounts
         IO.inspect(reason)
     end
 
+  end
+
+  def pay_request(request_id) do
+    request = Utilshare.Payment.get_payment_request_full!(request_id)
+    headers = ["Authorization": "Bearer #{Config.token}",
+    "Content-Type": "application/vnd.dwolla.v1.hal+json",
+    "Accept": "application/vnd.dwolla.v1.hal+json"]
+    
+    IO.inspect request
+
+    dest = Utilshare.Repo.preload(request.expense_instance, [expense: :owner])
+
+    body = %{_links: %{
+              source: %{href: "#{Config.api_url}/funding-sources/#{request.requestee.bank_funding_source_id}"},
+              destination: %{href: "#{Config.api_url}/funding-sources/#{dest.expense.owner.balance_funding_source_id}"}
+            },
+            amount: %{
+              currency: "USD",
+              value: Float.to_string((request.percent/100)*D.to_float(request.expense_instance.amount))
+            }
+          }
+    {:ok, body} = Poison.encode(body)
+    IO.puts body
+
+    case HTTPoison.post("#{Config.api_url}/transfers", body, headers) do
+      {:ok, %HTTPoison.Response{status_code: 201, headers: headers}} ->
+        new_transaction_url = get_header(headers, "Location")
+        %{"id" => id } = Regex.named_captures(~r/transfers\/(?<id>.*)/, new_transaction_url)
+        {:ok, req} = Utilshare.Payment.update_payment_request(request, %{"transaction_id" => id, "paid_at" => DateTime.utc_now })
+        req
+      {:error, %HTTPoison.Error{reason: reason}} ->
+        IO.inspect(reason)
+    end
+    
   end
 
 end
