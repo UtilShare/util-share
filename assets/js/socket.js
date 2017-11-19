@@ -1,6 +1,6 @@
 import {Socket} from "phoenix"
 import store from "./store"
-import {ADD_REQUESTS} from "./store/mutation-types"
+import {ADD_REQUESTS, ADD_ALERT} from "./store/mutation-types"
 
 export default {
   subscribe(store) {
@@ -14,6 +14,10 @@ export default {
       .receive("error", resp => { console.log("Unable to join", resp) })
 
     channel.on("request", req => {
+      store.commit(ADD_ALERT, { alert: {
+        message: "You've just received a payment request!",
+        type: "info"
+      } })
       store.commit(ADD_REQUESTS, { requests: [req] })
     })
   },
