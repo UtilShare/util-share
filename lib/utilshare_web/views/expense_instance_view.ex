@@ -34,13 +34,13 @@ defmodule UtilshareWeb.ExpenseInstanceView do
   end
 
   def render("created.json", %{expense_instance: expense_instance, splits: splits}) do
-    %{id: expense_instance.id,
-    note: expense_instance.note,
-    complete: expense_instance.complete,
-    amount: expense_instance.amount,
-    created_at: expense_instance.inserted_at,
-    splits: UtilshareWeb.PaymentRequestView.render("simple.json", %{payment_requests: splits})
-  }
+    %{
+      id: expense_instance.id,
+      note: expense_instance.note,
+      complete: expense_instance.complete,
+      amount: expense_instance.amount,
+      created_at: expense_instance.inserted_at,
+      splits: UtilshareWeb.PaymentRequestView.render("simple.json", %{payment_requests: splits})
+    }
   end
-
 end

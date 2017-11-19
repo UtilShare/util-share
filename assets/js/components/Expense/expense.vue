@@ -83,14 +83,18 @@ export default {
             }
           })
         }
-      }).then(result => {
-        debugger;
-      });
-      this.$store.commit(ADD_EXPENSE_INSTANCE, {
-        expense: this.expense,
-        instance: this.newInstance
-      });
-      this.newInstance = this.generateDefaultInstance();
+      })
+        .then(result => {
+          this.$store.commit(ADD_EXPENSE_INSTANCE, {
+            expense: this.expense,
+            instance: result.data
+          });
+          this.newInstance = this.generateDefaultInstance();
+        })
+        .catch(reason => {
+          this.alertErrors(reason)
+          this.toggleCharging();
+        })
       this.toggleCharging();
     },
 
