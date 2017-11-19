@@ -18,17 +18,12 @@
 </template>
 <script>
 import ApiMixin from "../../mixins/Api";
-import { ADD_ALERT } from "../../store/mutation-types";
+import { ADD_ALERT, UPDATE_REQUEST } from "../../store/mutation-types";
 
 export default {
   mixins: [ApiMixin],
   name: "payment-request-row",
   props: ["request"],
-  data() {
-    return {
-      paid: false
-    }
-  },
 
   methods: {
     payExpense() {
@@ -36,11 +31,11 @@ export default {
         .then(response => {
           this.$store.commit(ADD_ALERT, {
                 alert: {
-                  message: "All Paid",
+                  message: "Payment completed",
                   type: "info"
                 }
               });
-          this.paid = true;
+          this.$store.commit(UPDATE_REQUEST, { request: response.data })
         })
         .catch(this.alertErrors);
     },
@@ -60,7 +55,7 @@ export default {
     },
 
     completed() {
-      return this.request.paid_at || this.paid
+      return this.request.paid_at
     }
   }
 };
