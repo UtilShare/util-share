@@ -10,7 +10,7 @@
           <h6 class="card-subtitle mb-2 text-muted">to: {{request.expense_instance.expense.owner.first}} {{request.expense_instance.expense.owner.last}}</h6>
         </div>
         <div class="col-md-4">
-          <button class="btn btn-success">Pay ${{amount | twoPlaces}}</button>
+          <button @click="payExpense" class="btn btn-success">Pay ${{amount | twoPlaces}}</button>
         </div>
       </div>
     </div>
@@ -22,7 +22,15 @@ export default {
   mixins: [ApiMixin],
   name: "payment-request-row",
   props: ["request"],
-
+  methods: {
+    payExpense() {
+      this.sendRequest("payment_requests", "POST", { id: this.request.id })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(this.alertErrors);
+    }
+  },
   filters: {
     twoPlaces(value) {
       return value.toFixed(2);
@@ -31,8 +39,10 @@ export default {
 
   computed: {
     amount() {
-      return this.request.expense_instance.amount * (this.request.percent/100);
-    },
+      return (
+        this.request.expense_instance.amount * (this.request.percent / 100)
+      );
+    }
   }
 };
 </script>

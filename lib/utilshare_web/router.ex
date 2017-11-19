@@ -39,6 +39,7 @@ defmodule UtilshareWeb.Router do
     post "/expense_instances", ExpenseInstanceController, :create
 
     get "/payment_requests", PaymentRequestController, :index
+    post "/payment_requests", PaymentRequestController, :pay
 
     post "/funding_sources", FundingSourceController, :create
     get "/funding_sources", FundingSourceController, :index
