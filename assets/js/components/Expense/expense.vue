@@ -84,13 +84,12 @@ export default {
           })
         }
       }).then(result => {
-        debugger;
+        this.$store.commit(ADD_EXPENSE_INSTANCE, {
+          expense: this.expense,
+          instance: result.data
+        });
+        this.newInstance = this.generateDefaultInstance();
       });
-      this.$store.commit(ADD_EXPENSE_INSTANCE, {
-        expense: this.expense,
-        instance: this.newInstance
-      });
-      this.newInstance = this.generateDefaultInstance();
       this.toggleCharging();
     },
 
