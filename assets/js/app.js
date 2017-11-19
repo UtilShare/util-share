@@ -52,7 +52,7 @@ router.beforeEach(function (to, from, next) {
 });
 
 let config = {
-  api: 'http://localhost:4000/api'
+  api: '/api'
 };
 
 window.vms = new Vue({
