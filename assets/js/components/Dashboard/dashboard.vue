@@ -1,7 +1,11 @@
 <template>
-    <div class="dashboard d-flex flex-column">
-      <expenses-list></expenses-list>
-      <payment-request-list></payment-request-list>
+    <div class="dashboard row">
+      <div class="col-md-6">
+        <expenses-list></expenses-list>
+      </div>
+      <div class="col-md-6">
+        <payment-request-list></payment-request-list>
+      </div>
     </div>
 </template>
 <script>

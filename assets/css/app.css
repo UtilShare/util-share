@@ -1,10 +1,11 @@
 /* This file is for your main application css. */
 
-.expense {
-  width: 30rem;
+.card {
+  width: 100%;
   float: left;
   display: block;
   margin-right: 1rem;
+  margin-bottom: 1rem;
 }
 
 .padTop{

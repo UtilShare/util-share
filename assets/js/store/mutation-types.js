@@ -4,6 +4,7 @@ export const ADD_HOUSEHOLD = "ADD_HOUSEHOLD";
 
 export const ADD_EXPENSE_INSTANCE = "ADD_EXPENSE_INSTANCE";
 export const ADD_EXPENSES = "ADD_EXPENSES";
+export const ADD_REQUESTS = "ADD_REQUESTS";
 
 export const ADD_ALERT = "ADD_ALERT";
 

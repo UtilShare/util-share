@@ -2,9 +2,15 @@ import _ from 'lodash'
 
 import * as types from '../mutation-types'
 
-const state = []
+const state = {
+  expenses: [],
+  requests: []
+}
 
-const getters = {}
+const getters = {
+  expenses: state => state.expenses,
+  requests: state => state.requests
+}
 
 const actions = {}
 
@@ -18,11 +24,16 @@ const mutations = {
   },
 
   [types.ADD_EXPENSES](state, {expenses}) {
-    expenses.forEach(e => state.push(e))
+    state.expenses = [...expenses, ...state.expenses]
+  },
+
+  [types.ADD_REQUESTS](state, {requests}) {
+    state.requests = [...requests, ...state.requests]
   },
 
   [types.LOGOUT](state, opts={}) {
-    state.splice(0, state.length)
+    state.expenses = []
+    state.requests = []
   }
 }
 
