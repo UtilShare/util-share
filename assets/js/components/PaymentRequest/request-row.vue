@@ -1,5 +1,5 @@
 <template>
-  <div class="card request">
+  <div v-if="!completed" class="card request">
     <div class="card-body">
       <div class="row">
         <div class="col-md-3">
@@ -18,15 +18,28 @@
 </template>
 <script>
 import ApiMixin from "../../mixins/Api";
+import { ADD_ALERT } from "../../store/mutation-types";
 export default {
   mixins: [ApiMixin],
   name: "payment-request-row",
   props: ["request"],
+  data: function(){
+    return {
+      paid: false,
+      completed: this.request.paid_at || this.paid
+    }
+  },
   methods: {
     payExpense() {
       this.sendRequest("payment_requests", "POST", { id: this.request.id })
         .then(response => {
-          console.log(response);
+          this.$store.commit(ADD_ALERT, {
+                alert: {
+                  message: "All Paid",
+                  type: "info"
+                }
+              });
+          this.paid = true;
         })
         .catch(this.alertErrors);
     }

@@ -16,7 +16,8 @@ defmodule UtilshareWeb.PaymentRequestController do
         render(conn, "index.json", payment_requests: payment_requests)
     end
     def pay(conn, %{"id" => id}) do
-        Accounts.Dwolla.pay_request(id)
+        render(conn, "show.json", payment_request: Accounts.Dwolla.pay_request(id))
+
     end
 
 end
