@@ -85,11 +85,11 @@ export default {
         }
       })
         .then(result => {
-        this.$store.commit(ADD_EXPENSE_INSTANCE, {
-          expense: this.expense,
-          instance: result.data
-        });
-        this.newInstance = this.generateDefaultInstance();
+          this.$store.commit(ADD_EXPENSE_INSTANCE, {
+            expense: this.expense,
+            instance: result.data
+          });
+          this.newInstance = this.generateDefaultInstance();
         })
         .catch(reason => {
           this.alertErrors(reason)
