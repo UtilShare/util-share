@@ -1,7 +1,7 @@
 defmodule UtilshareWeb.UpdatesChannel do
   use UtilshareWeb, :channel
 
-  def join("updates:lobby", payload, socket) do
+  def join("updates:" <> user_id, payload, socket) do
     if authorized?(payload) do
       {:ok, socket}
     else
