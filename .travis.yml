@@ -11,14 +11,9 @@ after_success:
 before_install:
 - openssl aes-256-cbc -K $encrypted_0162828b511f_key -iv $encrypted_0162828b511f_iv -in github_deploy_key.enc -out github_deploy_key -d
 before_script:
-- nvm install $(cat .nvmrc)
-- nvm use $(cat .nvmrc)
-- yes | mix deps.get
-- psql -U postgres -c "CREATE USER utilshare WITH CREATEUSER PASSWORD 'je9ho1eeSu';"
-- psql -U postgres -c "CREATE DATABASE utilshare_test;"
-- yes | mix ecto.migrate
+- echo hello, world
 script:
-- mix test
+- echo hello, again
 deploy:
   skip_cleanup: true
   provider: script
