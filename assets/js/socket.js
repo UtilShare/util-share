@@ -16,5 +16,9 @@ export default {
     channel.on("request", req => {
       store.commit(ADD_REQUESTS, { requests: [req] })
     })
+  },
+
+  unsubscribe(store) {
+    // TODO
   }
 }
