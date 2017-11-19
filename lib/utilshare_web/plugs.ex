@@ -18,7 +18,7 @@ defmodule UtilshareWeb.Plugs do
         assign(conn, :auth, nil)
     end
   end
-  
+
   def authorized(conn, _opts) do
     if(not(is_nil(conn.assigns.auth)))do
       conn

@@ -31,6 +31,13 @@ const mutations = {
     state.requests = [...requests, ...state.requests]
   },
 
+  [types.UPDATE_REQUEST](state, {request}) {
+    state.requests = _.map(state.requests, (r) => {
+      if (r.id === request.id) return request
+      return r
+    })
+  },
+
   [types.LOGOUT](state, opts={}) {
     state.expenses = []
     state.requests = []

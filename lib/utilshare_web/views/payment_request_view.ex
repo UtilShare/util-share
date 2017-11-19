@@ -1,5 +1,6 @@
 defmodule UtilshareWeb.PaymentRequestView do
   use UtilshareWeb, :view
+  alias Utilshare.Repo
   alias UtilshareWeb.PaymentRequestView
   alias UtilshareWeb.PaymentRequest
 
@@ -12,6 +13,8 @@ defmodule UtilshareWeb.PaymentRequestView do
   end
 
   def render("expense_instance.json", %{payment_request: payment_request}) do
+    payment_request = Repo.preload(payment_request, :requestee)
+    payment_request = Repo.preload(payment_request, :expense_instance)
     %{
       id: payment_request.id,
       percent: payment_request.percent,

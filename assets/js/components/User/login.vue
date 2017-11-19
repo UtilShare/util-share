@@ -14,6 +14,7 @@
 <script>
 import axios from "axios";
 
+import socket from "../../socket"
 import ApiMixin from "../../mixins/Api"
 import { SET_AUTH, SET_USER, ADD_ALERT } from "../../store/mutation-types";
 
@@ -34,6 +35,7 @@ export default {
         .then(response => {
           this.$store.commit(SET_AUTH, { auth: response.data.jwt });
           this.$store.commit(SET_USER, { user: response.data.user });
+          socket.subscribe(this.$store)
           this.$emit('logged-in');
         })
         .catch(this.alertErrors)

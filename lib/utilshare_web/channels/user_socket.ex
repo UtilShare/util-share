@@ -1,12 +1,8 @@
 defmodule UtilshareWeb.UserSocket do
   use Phoenix.Socket
 
-  ## Channels
-  # channel "room:*", UtilshareWeb.RoomChannel
-
-  ## Transports
+  channel "updates:*", UtilshareWeb.UpdatesChannel
   transport :websocket, Phoenix.Transports.WebSocket
-  # transport :longpoll, Phoenix.Transports.LongPoll
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
@@ -19,8 +15,14 @@ defmodule UtilshareWeb.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
-  def connect(_params, socket) do
-    {:ok, socket}
+  def connect(params, socket) do
+    auth = params["token"]
+    case Phoenix.Token.verify(UtilshareWeb.Endpoint, Utilshare.Config.jwt_hash, auth, max_age: 86400) do
+      {:ok, user} ->
+        {:ok, assign(socket, :user_id, Integer.to_string(user.id))}
+      {:error, reason} ->
+        {:error, reason}
+    end
   end
 
   # Socket id's are topics that allow you to identify all sockets for a given user:
