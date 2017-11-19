@@ -95,19 +95,23 @@ export default {
     },
 
     generateDefaultInstance() {
-      let usersForInstance = _.filter(
-        this.expense.household.users,
-        u => u.id != this.expense.owner.id
-      );
+      if (!this.expense.instances || !this.expense.instances.length) {
+        let usersForInstance = _.filter(
+          this.expense.household.users,
+          u => u.id != this.expense.owner.id
+        );
 
-      let defaultSplits = _.map(usersForInstance, u => {
-        return { user: u, complete: false, percent: 0 };
-      });
+        let defaultSplits = _.map(usersForInstance, u => {
+          return { user: u, complete: false, percent: 0 };
+        });
 
-      return {
-        splits: defaultSplits,
-        amount: 0
-      };
+        return {
+          splits: defaultSplits,
+          amount: 0
+        };
+      } else {
+        return this.expense.instances[0]
+      }
     }
   }
 };
