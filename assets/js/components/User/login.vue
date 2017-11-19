@@ -33,7 +33,7 @@ export default {
       this.sendRequest('sessions', 'POST', { login: this.login })
         .then(response => {
           this.$store.commit(SET_AUTH, { auth: response.data.jwt });
-          this.$store.commit(SET_USER, { user: response.data.user })
+          this.$store.commit(SET_USER, { user: response.data.user });
           this.$emit('logged-in');
         })
         .catch(this.alertErrors)

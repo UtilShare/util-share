@@ -8,6 +8,8 @@ defmodule Utilshare.Accounts.User do
 
   schema "users" do
     field :dwolla_id, :string
+    field :balance_funding_source_id, :string
+    field :bank_funding_source_id, :string
     field :email, :string
     field :first, :string
     field :last, :string
@@ -22,7 +24,7 @@ defmodule Utilshare.Accounts.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:first, :last, :email, :dwolla_id, :password, :password_confirmation])
+    |> cast(attrs, [:first, :last, :email, :dwolla_id, :balance_funding_source_id, :bank_funding_source_id, :password, :password_confirmation])
     |> validate_required([:first, :last, :email, :dwolla_id])
     |> validate_coherence(attrs)
   end
