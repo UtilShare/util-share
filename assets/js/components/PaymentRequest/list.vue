@@ -1,7 +1,8 @@
 <template>
   <div class="list">
-    <h2>Payment Requests</h2>
-    <div class="d-flex flex-row" v-if="orderedRequests.length">
+    <h3>Payment Requests</h3>
+    <br>
+    <div class="row" v-if="orderedRequests.length">
       <request-row v-for="request in orderedRequests" :key="request.id" :request="request"></request-row>
     </div>
     <p v-else class="text-muted">No payment requests</p>
@@ -23,7 +24,8 @@ export default {
 
   computed: {
     orderedRequests() {
-      return _.orderBy(this.requests, (x)=>x.expense_instance.created_at)  
+      let ordered = _.orderBy(this.requests, (x)=>x.expense_instance.created_at)
+      return _.reject(this.requests, 'complete')
     },
 
     requests() {
