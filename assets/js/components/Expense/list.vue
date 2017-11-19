@@ -24,12 +24,14 @@ export default {
   },
   mixins: [ApiMixin],
 
-  computed: Vuex.mapState({
-    expenses: state => state.expenses
-  }),
+  computed: {
+    expenses() {
+      return this.$store.getters.expenses
+    }
+  },
 
   mounted() {
-    if (!this.$store.state.expenses || this.$store.state.expenses.length == 0) {
+    if (!this.$store.getters.expenses || this.$store.getters.expenses.length == 0) {
       this.sendRequest('expenses', 'GET')
         .then(response => this.$store.commit(ADD_EXPENSES, { expenses: response.data }))
         .catch(this.alertErrors)

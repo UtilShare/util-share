@@ -8,29 +8,35 @@
   </div>
 </template>
 <script>
+import _ from 'lodash';
+
 import ApiMixin from "../../mixins/Api";
 import RequestRow from './request-row'
-import _ from 'lodash';
+import { ADD_REQUESTS } from "../../store/mutation-types"
+
 export default {
   mixins: [ApiMixin],
   name: "payment-request-list",
-  data: function(){
-    return {
-      requests : []
-    };
+  components: {
+    'request-row': RequestRow
   },
+
   computed: {
     orderedRequests() {
       return _.orderBy(this.requests, (x)=>x.expense_instance.created_at)  
+    },
+
+    requests() {
+      return this.$store.getters.requests
     }
   },
-  components:{
-    'request-row': RequestRow
-  },
-  mounted: function() {
-    this.sendRequest(`payment_requests`, "GET").then(x=>{
-      this.requests = x.data;
-    });
+
+  mounted() {
+    if (!this.$store.getters.requests || this.$store.getters.requests.length == 0) {
+      this.sendRequest('payment_requests', "GET")
+        .then(response => this.$store.commit(ADD_REQUESTS, { requests: response.data }))
+        .catch(this.alertErrors)
+    }
   }
-};
+}
 </script>

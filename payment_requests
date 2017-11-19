@@ -1,0 +1,406 @@
+.exit
+exit
+q
+quit
+\q
+CREATE ROLE codeship superuser;
+\q
+ALTER ROLE codeship WITH LOGIN;
+\q
+SELECT \"builds\".* FROM \"builds\" WHERE \"builds\".\"project_id\" IN (208214, 208298, 198313, 208292, 206314, 208296, 206315, 208299, 204381, 199309, 198004, 208554, 208560, 209112, 208550, 208558, 208552, 208551, 207891, 209125, 208561, 207229, 205406, 208565) AND (DATE(updated_at) = '2017-02-20 08:15:53.320706');
+SELECT "builds".* FROM "builds" WHERE "builds"."project_id" IN (208214, 208298, 198313, 208292, 206314, 208296, 206315, 208299, 204381, 199309, 198004, 208554, 208560, 209112, 208550, 208558, 208552, 208551, 207891, 209125, 208561, 207229, 205406, 208565) AND (DATE(updated_at) = '2017-02-20 08:15:53.320706');
+SELECT builds.* FROM "builds" WHERE "builds"."project_id" IN (208214, 208298, 198313, 208292, 206314, 208296, 206315, 208299, 204381, 199309, 198004, 208554, 208560, 209112, 208550, 208558, 208552, 208551, 207891, 209125, 208561, 207229, 205406, 208565) AND (DATE(updated_at) = '2017-02-20 08:15:53.320706');
+SELECT builds.* FROM "builds" WHERE "builds"."project_id" IN (208214, 208298, 198313, 208292, 206314, 208296, 206315, 208299, 204381, 199309, 198004, 208554, 208560, 209112, 208550, 208558, 208552, 208551, 207891, 209125, 208561, 207229, 205406, 208565);
+.exit
+\exit
+exit
+\q
+SELECT builds.* FROM "builds" WHERE "builds"."project_id" IN (208214, 208298, 198313, 208292, 206314, 208296, 206315, 208299, 204381, 199309, 198004, 208554, 208560, 209112, 208550, 208558, 208552, 208551, 207891, 209125, 208561, 207229, 205406, 208565) AND (DATE(updated_at) = '2017-02-20 08:15:53.320706');
+SELECT builds.* FROM "builds" WHERE "builds"."project_id" IN (208214, 208298, 198313, 208292, 206314, 208296, 206315, 208299, 204381, 199309, 198004, 208554, 208560, 209112, 208550, 208558, 208552, 208551, 207891, 209125, 208561, 207229, 205406, 208565);
+\q
+explain plan (SELECT builds.* FROM "builds" WHERE "builds"."project_id" IN (208214, 208298, 198313, 208292, 206314, 208296, 206315, 208299, 204381, 199309, 198004, 208554, 208560, 209112, 208550, 208558, 208552, 208551, 207891, 209125, 208561, 207229, 205406, 208565) LIMIT 15 ORDER BY created_at);
+explainn (SELECT builds.* FROM "builds" WHERE "builds"."project_id" IN (208214, 208298, 198313, 208292, 206314, 208296, 206315, 208299, 204381, 199309, 198004, 208554, 208560, 209112, 208550, 208558, 208552, 208551, 207891, 209125, 208561, 207229, 205406, 208565) LIMIT 15 ORDER BY created_at);
+explain (SELECT builds.* FROM "builds" WHERE "builds"."project_id" IN (208214, 208298, 198313, 208292, 206314, 208296, 206315, 208299, 204381, 199309, 198004, 208554, 208560, 209112, 208550, 208558, 208552, 208551, 207891, 209125, 208561, 207229, 205406, 208565) LIMIT 15 ORDER BY created_at);
+explain (SELECT builds.* FROM "builds" WHERE "builds"."project_id" IN (208214, 208298, 198313, 208292, 206314, 208296, 206315, 208299, 204381, 199309, 198004, 208554, 208560, 209112, 208550, 208558, 208552, 208551, 207891, 209125, 208561, 207229, 205406, 208565) LIMIT 15 ORDER created_at);
+explain (SELECT builds.* FROM "builds" WHERE "builds"."project_id" IN (208214, 208298, 198313, 208292, 206314, 208296, 206315, 208299, 204381, 199309, 198004, 208554, 208560, 209112, 208550, 208558, 208552, 208551, 207891, 209125, 208561, 207229, 205406, 208565) LIMIT 15);
+explain (SELECT builds.* FROM "builds" WHERE "builds"."project_id" IN (208214, 208298, 198313, 208292, 206314, 208296, 206315, 208299, 204381, 199309, 198004, 208554, 208560, 209112, 208550, 208558, 208552, 208551, 207891, 209125, 208561, 207229, 205406, 208565) ORDER BY created_at LIMIT 15);
+explain (SELECT builds.* FROM "builds" WHERE "builds"."project_id" IN (208214, 208298, 198313, 208292, 206314, 208296, 206315, 208299, 204381, 199309, 198004, 208554, 208560, 209112, 208550, 208558, 208552, 208551, 207891, 209125, 208561, 207229, 205406, 208565) AND DATE(updated_at) > ORDER BY created_at);
+explain (SELECT builds.* FROM "builds" WHERE "builds"."project_id" IN (208214, 208298, 198313, 208292, 206314, 208296, 206315, 208299, 204381, 199309, 198004, 208554, 208560, 209112, 208550, 208558, 208552, 208551, 207891, 209125, 208561, 207229, 205406, 208565) ORDER BY created_at);
+\q
+explain analyze (SELECT builds.* FROM "builds" WHERE "builds"."project_id" IN (208214, 208298, 198313, 208292, 206314, 208296, 206315, 208299, 204381, 199309, 198004, 208554, 208560, 209112, 208550, 208558, 208552, 208551, 207891, 209125, 208561, 207229, 205406, 208565) LIMIT 15);
+explain analyze (SELECT builds.* FROM "builds" WHERE "builds"."project_id" IN (208214, 208298, 198313, 208292, 206314, 208296, 206315, 208299, 204381, 199309, 198004, 208554, 208560, 209112, 208550, 208558, 208552, 208551, 207891, 209125, 208561, 207229, 205406, 208565));
+explaine (SELECT builds.* FROM "builds" WHERE "builds"."project_id" IN (208214, 208298, 198313, 208292, 206314, 208296, 206315, 208299, 204381, 199309, 198004, 208554, 208560, 209112, 208550, 208558, 208552, 208551, 207891, 209125, 208561, 207229, 205406, 208565));
+explain (SELECT builds.* FROM "builds" WHERE "builds"."project_id" IN (208214, 208298, 198313, 208292, 206314, 208296, 206315, 208299, 204381, 199309, 198004, 208554, 208560, 209112, 208550, 208558, 208552, 208551, 207891, 209125, 208561, 207229, 205406, 208565));
+\q
+\q
+.exit
+\q
+EXPLAIN (ANALYZE, BUFFERS)
+UPDATE builds AS b
+      SET last_build_run_at = r.started_at
+      FROM build_runs AS r
+      WHERE r.id = b.last_build_run_id AND b.last_build_run_at IS NOT NULL;
+explain(UPDATE builds AS b SET last_build_run_at = r.started_at FROM build_runs AS r WHERE r.id = b.last_build_run_id AND b.last_build_run_at IS NOT NULL)
+;
+explain(UPDATE builds AS b SET last_build_run_at = r.started_at FROM build_runs AS r WHERE r.id = b.last_build_run_id AND b.last_build_run_at IS NOT NULL);
+explain(UPDATE builds SET last_build_run_at = build_runs.started_at FROM build_runs WHERE build_runs.id = builds.last_build_run_id AND builds.last_build_run_at IS NOT NULL);
+.tables
+;
+\schema
+\?
+\t
+\d
+explain(UPDATE builds SET last_build_run_at = build_runs.started_at FROM build_runs WHERE build_runs.id = builds.last_build_run_id AND builds.last_build_run_at IS NOT NULL);
+explain(UPDATE builds SET last_build_run_at = build_runs.started_at FROM build_runs WHERE build_runs.id = builds.last_build_run_id AND builds.last_build_run_at IS NOT NULL);
+explain(update builds set last_build_run_at = build_runs.started_at from build_runs where build_runs.id = builds.last_build_run_id and builds.last_build_run_at is not null);
+explain(update builds b set last_build_run_at = build_runs.started_at from build_runs where build_runs.id = builds.last_build_run_id and builds.last_build_run_at is not null);
+explain update builds b set last_build_run_at = build_runs.started_at from build_runs where build_runs.id = builds.last_build_run_id and builds.last_build_run_at is not null;
+explain update builds b set last_build_run_at = r.started_at from build_runs as r where r.id = b.last_build_run_id and b.last_build_run_at is not null;
+explain update builds b set last_build_run_at = r.started_at from build_runs as r where r.id = b.last_build_run_id and b.last_build_run_at is not null and b.started_at > now() - interval '1 year';
+explain update builds b set last_build_run_at = r.started_at from build_runs as r where r.id = b.last_build_run_id and b.last_build_run_at is not null and b.created_at > now() - interval '1 year';
+explain update builds b set last_build_run_at = r.started_at from build_runs as r where r.id = b.last_build_run_id and b.last_build_run_at is not null and b.created_at > now() - interval '6 months';
+\q
+.tables
+.schema
+\t
+\d
+\q
+\i
+\h
+show indexes
+show indexes from builds
+\t
+\d
+\q
+explain analyze SELECT  DISTINCT "accounts"."id" AS count_column FROM "accounts" INNER JOIN "account_teams" ON "account_teams"."account_id" = "accounts"."id" INNER JOIN "account_team_memberships" ON "account_team_memberships"."team_id" = "account_teams"."id" INNER JOIN "users" ON "users"."id" = "account_team_memberships"."user_id" WHERE (accounts.name ILIKE '%Ben Muschol%' OR accounts.braintree_customer_id ILIKE '%Ben Muschol%' OR users.email ILIKE '%Ben Muschol%' OR users.name ILIKE '%Ben Muschol%' OR users.braintree_customer_id ILIKE '%Ben Muschol%') LIMIT 15;
+explain analyze SELECT  DISTINCT "accounts"."id" AS count_column FROM "accounts" INNER JOIN "account_teams" ON "account_teams"."account_id" = "accounts"."id" INNER JOIN "account_team_memberships" ON "account_team_memberships"."team_id" = "account_teams"."id" INNER JOIN "users" ON "users"."id" = "account_team_memberships"."user_id" WHERE (accounts.name ILIKE '%Ben Muschol%' users.name ILIKE '%Ben Muschol%') LIMIT 15;
+explain analyze SELECT  DISTINCT "accounts"."id" AS count_column FROM "accounts" INNER JOIN "account_teams" ON "account_teams"."account_id" = "accounts"."id" INNER JOIN "account_team_memberships" ON "account_team_memberships"."team_id" = "account_teams"."id" INNER JOIN "users" ON "users"."id" = "account_team_memberships"."user_id" WHERE (accounts.name ILIKE '%Ben Muschol%' OR users.name ILIKE '%Ben Muschol%') LIMIT 15;
+\q
+select COUNT(*) from accounts where accounts.name NOT SIMILAR TO '\D''
+';
+select COUNT(*) from accounts where accounts.name NOT SIMILAR TO '\D';
+select name from accounts where accounts.name NOT SIMILAR TO '\D';
+select name from accounts where accounts.name NOT SIMILAR TO '%\D%';
+select name from userss where users.name NOT SIMILAR TO '%\D%';
+select name from users where users.name NOT SIMILAR TO '%\D%';
+select name from users where users.name NOT SIMILAR TO '%\D%' AND users.name IS NOT NULL;
+\q
+explain analyze SELECT  DISTINCT "accounts"."id" AS count_column FROM "accounts" INNER JOIN "account_teams" ON "account_teams"."account_id" = "accounts"."id" INNER JOIN "account_team_memberships" ON "account_team_memberships"."team_id" = "account_teams"."id" INNER JOIN "users" ON "users"."id" = "account_team_memberships"."user_id" WHERE (accounts.name ILIKE '%Ben Muschol%' OR accounts.braintree_customer_id ILIKE '%Ben Muschol%' OR users.email ILIKE '%Ben Muschol%' OR users.name ILIKE '%Ben Muschol%' OR users.braintree_customer_id ILIKE '%Ben Muschol%') LIMIT 15;
+explain analyze SELECT  DISTINCT "accounts"."id" AS count_column FROM "accounts" INNER JOIN "account_teams" ON "account_teams"."account_id" = "accounts"."id" INNER JOIN "account_team_memberships" ON "account_team_memberships"."team_id" = "account_teams"."id" INNER JOIN "users" ON "users"."id" = "account_team_memberships"."user_id" WHERE (accounts.name ILIKE '%Ben Muschol%' users.name ILIKE '%Ben Muschol%') LIMIT 15;
+explain analyze SELECT  DISTINCT "accounts"."id" AS count_column FROM "accounts" INNER JOIN "account_teams" ON "account_teams"."account_id" = "accounts"."id" INNER JOIN "account_team_memberships" ON "account_team_memberships"."team_id" = "account_teams"."id" INNER JOIN "users" ON "users"."id" = "account_team_memberships"."user_id" WHERE (accounts.name ILIKE '%Ben Muschol%' OR users.name ILIKE '%Ben Muschol%') LIMIT 15;
+explain analyze SELECT  DISTINCT "accounts"."id" AS count_column FROM "accounts" INNER JOIN "account_teams" ON "account_teams"."account_id" = "accounts"."id" INNER JOIN "account_team_memberships" ON "account_team_memberships"."team_id" = "account_teams"."id" INNER JOIN "users" ON "users"."id" = "account_team_memberships"."user_id" WHERE (users.name ILIKE '%Ben Muschol%') LIMIT 15;
+explain analyze SELECT  DISTINCT "accounts"."id" AS count_column FROM "accounts" INNER JOIN "account_teams" ON "account_teams"."account_id" = "accounts"."id" INNER JOIN "account_team_memberships" ON "account_team_memberships"."team_id" = "account_teams"."id" INNER JOIN "users" ON "users"."id" = "account_team_memberships"."user_id" WHERE (users.email ILIKE '%Ben Muschol%') LIMIT 15;
+\q
+explain analyze SELECT  DISTINCT "accounts"."id" AS count_column FROM "accounts" INNER JOIN "account_teams" ON "account_teams"."account_id" = "accounts"."id" INNER JOIN "account_team_memberships" ON "account_team_memberships"."team_id" = "account_teams"."id" INNER JOIN "users" ON "users"."id" = "account_team_memberships"."user_id" WHERE (accounts.name ILIKE '%Ben Muschol%' OR users.name ILIKE '%Ben Muschol%') LIMIT 15;
+explain analyze SELECT  DISTINCT "accounts"."id" AS count_column FROM "accounts" INNER JOIN "account_teams" ON "account_teams"."account_id" = "accounts"."id" INNER JOIN "account_team_memberships" ON "account_team_memberships"."team_id" = "account_teams"."id" INNER JOIN "users" ON "users"."id" = "account_team_memberships"."user_id" WHERE (accounts.name LIKE 'Ben Muschol' OR users.name = 'Ben Muschol') LIMIT 15;
+\q
+ARRAY[] <@ ARRAY['a'::text]
+;
+SELECT ARRAY[] <@ ARRAY['a'::text];
+SELECT ARRAY[]::text[] <@ ARRAY['a'::text];
+ARRAY[]::text[] <@ ARRAY['a'::text];
+SELECT ARRAY[]::text[] <@ ARRAY['a'::text];
+SELECT ARRAY['b'::text] <@ ARRAY['a'::text];
+SELECT ARRAY['b'::text] <@ ARRAY['b'::text, 'c'::text, 'a'::text];
+SELECT ARRAY['b'::text, 'c'::text] <@ ARRAY['b'::text, 'c'::text, 'a'::text];
+exit
+\q
+{}
+;
+select {};
+select {test};
+.exit
+\q
+exit
+;
+\q
+EXPLAIN SELECT DISTINCT 'accounts'.* FROM 'accounts' WHERE ('accounts'.'id' IN (SELECT 'account_teams'.'account_id' FROM 'account_teams' WHERE 'account_teams'.'id' IN (SELECT 'account_team_memberships'.'team_id' FROM 'account_team_memberships' WHERE 'account_team_memberships'.'user_id' IN (SELECT 'users'.'id' FROM 'users' WHERE ('email' ILIKE '%benmuschol@gmail.com%')))) OR (accounts.name ILIKE '%benmuschol@gmail.com%'))
+;
+EXPLAIN SELECT DISTINCT accounts.* FROM 'accounts' WHERE (accounts.id IN (SELECT account_teams.account_id FROM account_teams WHERE account_teams.id IN (SELECT account_team_memberships.team_id FROM account_team_memberships WHERE account_team_memberships.user_id IN (SELECT users.id FROM users WHERE (email ILIKE '%benmuschol@gmail.com%')))) OR (accounts.name ILIKE '%benmuschol@gmail.com%'))
+;
+EXPLAIN SELECT DISTINCT accounts.* FROM accounts WHERE (accounts.id IN (SELECT account_teams.account_id FROM account_teams WHERE account_teams.id IN (SELECT account_team_memberships.team_id FROM account_team_memberships WHERE account_team_memberships.user_id IN (SELECT users.id FROM users WHERE (email ILIKE '%benmuschol@gmail.com%')))) OR (accounts.name ILIKE '%benmuschol@gmail.com%'))
+;
+EXPLAIN ANALYZE SELECT DISTINCT accounts.* FROM accounts WHERE (accounts.id IN (SELECT account_teams.account_id FROM account_teams WHERE account_teams.id IN (SELECT account_team_memberships.team_id FROM account_team_memberships WHERE account_team_memberships.user_id IN (SELECT users.id FROM users WHERE (email ILIKE '%benmuschol@gmail.com%')))) OR (accounts.name ILIKE '%benmuschol@gmail.com%'))
+;
+explain analyze SELECT DISTINCT accounts.* FROM accounts INNER JOIN account_teams ON account_teams.account_id = accounts.id INNER JOIN account_team_memberships ON account_team_memberships.team_id = account_teams.id INNER JOIN users ON users.id = account_team_memberships.user_id WHERE (users.email ILIKE '%benmuschol@gmail.com%') ORDER BY accounts.id ASC
+;
+exit
+\q
+DROP INDEX CONCURRENTLY index_projects_on_deleted_at;
+exit
+\q
+SELECT * FROM pg_indexes WHERE tablename = 'projects';
+exit
+.exit
+\q
+EXPLAIN ANALYZE SELECT "projects".* FROM "projects" WHERE ("projects"."deleted_at" IS NULL AND ( projects.id IN (SELECT projects.id FROM projects WHERE projects.account_id = 116997 UNION SELECT DISTINCT projects.id FROM projects INNER JOIN account_team_projects ON account_team_projects.project_id = projects.id INNER JOIN account_teams ON account_teams.id = account_team_projects.team_id INNER JOIN account_team_memberships ON account_team_memberships.team_id = account_teams.id WHERE account_team_memberships.user_id = 108639)) AND ("projects"."repository_name" IS NOT NULL) OR "projects"."deleted_at" IS NULL AND ( projects.id IN (SELECT projects.id FROM projects WHERE projects.account_id = 116997 UNION SELECT DISTINCT projects.id FROM projects INNER JOIN account_team_projects ON account_team_projects.project_id = projects.id INNER JOIN account_teams ON account_teams.id = account_team_projects.team_id INNER JOIN account_team_memberships ON account_team_memberships.team_id = account_teams.id WHERE account_team_memberships.user_id = ?)) AND ("projects"."name" IS NOT ?)) ORDER BY last_push IS NULL, last_push DESC;
+EXPLAIN ANALYZE SELECT "projects".* FROM "projects" WHERE ("projects"."deleted_at" IS NULL AND ( projects.id IN (SELECT projects.id FROM projects WHERE projects.account_id = 116997 UNION SELECT DISTINCT projects.id FROM projects INNER JOIN account_team_projects ON account_team_projects.project_id = projects.id INNER JOIN account_teams ON account_teams.id = account_team_projects.team_id INNER JOIN account_team_memberships ON account_team_memberships.team_id = account_teams.id WHERE account_team_memberships.user_id = 108639)) AND ("projects"."repository_name" IS NOT NULL) OR "projects"."deleted_at" IS NULL AND ( projects.id IN (SELECT projects.id FROM projects WHERE projects.account_id = 116997 UNION SELECT DISTINCT projects.id FROM projects INNER JOIN account_team_projects ON account_team_projects.project_id = projects.id INNER JOIN account_teams ON account_teams.id = account_team_projects.team_id INNER JOIN account_team_memberships ON account_team_memberships.team_id = account_teams.id WHERE account_team_memberships.user_id = 108639)) AND ("projects"."name" IS NOT NULL)) ORDER BY last_push IS NULL, last_push DESC;
+EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS, FORMAT JSON) SELECT "projects".* FROM "projects" WHERE ("projects"."deleted_at" IS NULL AND ( projects.id IN (SELECT projects.id FROM projects WHERE projects.account_id = 116997 UNION SELECT DISTINCT projects.id FROM projects INNER JOIN account_team_projects ON account_team_projects.project_id = projects.id INNER JOIN account_teams ON account_teams.id = account_team_projects.team_id INNER JOIN account_team_memberships ON account_team_memberships.team_id = account_teams.id WHERE account_team_memberships.user_id = 108639)) AND ("projects"."repository_name" IS NOT NULL) OR "projects"."deleted_at" IS NULL AND ( projects.id IN (SELECT projects.id FROM projects WHERE projects.account_id = 116997 UNION SELECT DISTINCT projects.id FROM projects INNER JOIN account_team_projects ON account_team_projects.project_id = projects.id INNER JOIN account_teams ON account_teams.id = account_team_projects.team_id INNER JOIN account_team_memberships ON account_team_memberships.team_id = account_teams.id WHERE account_team_memberships.user_id = 108639)) AND ("projects"."name" IS NOT NULL)) ORDER BY last_push IS NULL, last_push DESC;
+EXPLAIN (ANALYZE, COSTS, BUFFERS, FORMAT JSON) SELECT "projects".* FROM "projects" WHERE ("projects"."deleted_at" IS NULL AND ( projects.id IN (SELECT projects.id FROM projects WHERE projects.account_id = 116997 UNION SELECT DISTINCT projects.id FROM projects INNER JOIN account_team_projects ON account_team_projects.project_id = projects.id INNER JOIN account_teams ON account_teams.id = account_team_projects.team_id INNER JOIN account_team_memberships ON account_team_memberships.team_id = account_teams.id WHERE account_team_memberships.user_id = 108639)) AND ("projects"."repository_name" IS NOT NULL) OR "projects"."deleted_at" IS NULL AND ( projects.id IN (SELECT projects.id FROM projects WHERE projects.account_id = 116997 UNION SELECT DISTINCT projects.id FROM projects INNER JOIN account_team_projects ON account_team_projects.project_id = projects.id INNER JOIN account_teams ON account_teams.id = account_team_projects.team_id INNER JOIN account_team_memberships ON account_team_memberships.team_id = account_teams.id WHERE account_team_memberships.user_id = 108639)) AND ("projects"."name" IS NOT NULL)) ORDER BY last_push IS NULL, last_push DESC;
+SELECT * FROM pg_indexes WHERE tablename = 'projects';
+exit
+\q
+EXPLAIN (ANALYZE, COSTS, BUFFERS) SELECT "projects".* FROM "projects" WHERE ("projects"."deleted_at" IS NULL AND ( projects.id IN (SELECT projects.id FROM projects WHERE projects.account_id = 116997 UNION SELECT DISTINCT projects.id FROM projects INNER JOIN account_team_projects ON account_team_projects.project_id = projects.id INNER JOIN account_teams ON account_teams.id = account_team_projects.team_id INNER JOIN account_team_memberships ON account_team_memberships.team_id = account_teams.id WHERE account_team_memberships.user_id = 108639)) AND ("projects"."repository_name" IS NOT NULL) OR "projects"."deleted_at" IS NULL AND ( projects.id IN (SELECT projects.id FROM projects WHERE projects.account_id = 116997 UNION SELECT DISTINCT projects.id FROM projects INNER JOIN account_team_projects ON account_team_projects.project_id = projects.id INNER JOIN account_teams ON account_teams.id = account_team_projects.team_id INNER JOIN account_team_memberships ON account_team_memberships.team_id = account_teams.id WHERE account_team_memberships.user_id = 108639)) AND ("projects"."name" IS NOT NULL)) ORDER BY last_push IS NULL, last_push DESC;
+exit
+\q
+explain analyze SELECT "projects".* FROM "projects" WHERE ("projects"."deleted_at" IS NULL AND (      projects.id IN
+      (SELECT projects.id FROM projects WHERE projects.account_id = 56437
+      UNION
+      SELECT DISTINCT projects.id FROM projects INNER JOIN account_team_projects
+      ON account_team_projects.project_id = projects.id INNER JOIN account_teams
+      ON account_teams.id = account_team_projects.team_id INNER JOIN account_team_memberships
+      ON account_team_memberships.team_id = account_teams.id WHERE account_team_memberships.user_id = 1)
+) AND ("projects"."repository_name" IS NOT NULL) OR "projects"."deleted_at" IS NULL AND (      projects.id IN
+      (SELECT projects.id FROM projects WHERE projects.account_id = 56437
+      UNION
+      SELECT DISTINCT projects.id FROM projects INNER JOIN account_team_projects
+      ON account_team_projects.project_id = projects.id INNER JOIN account_teams
+      ON account_teams.id = account_team_projects.team_id INNER JOIN account_team_memberships
+      ON account_team_memberships.team_id = account_teams.id WHERE account_team_memberships.user_id = 1)
+) AND ("projects"."name" IS NOT NULL))
+;
+explain anaylze SELECT "projects".* FROM "projects" WHERE (      projects.id IN
+      (SELECT projects.id FROM projects WHERE projects.account_id = 56437
+      UNION
+      SELECT DISTINCT projects.id FROM projects INNER JOIN account_team_projects
+      ON account_team_projects.project_id = projects.id INNER JOIN account_teams
+      ON account_teams.id = account_team_projects.team_id INNER JOIN account_team_memberships
+      ON account_team_memberships.team_id = account_teams.id WHERE account_team_memberships.user_id = 56437)
+) AND (repository_name IS NOT NULL or name IS NOT NULL);
+explain analyze SELECT "projects".* FROM "projects" WHERE (      projects.id IN
+      (SELECT projects.id FROM projects WHERE projects.account_id = 56437
+      UNION
+      SELECT DISTINCT projects.id FROM projects INNER JOIN account_team_projects
+      ON account_team_projects.project_id = projects.id INNER JOIN account_teams
+      ON account_teams.id = account_team_projects.team_id INNER JOIN account_team_memberships
+      ON account_team_memberships.team_id = account_teams.id WHERE account_team_memberships.user_id = 56437)
+) AND (repository_name IS NOT NULL or name IS NOT NULL);
+exit
+\q
+explain analyze SELECT "projects".* FROM "projects" WHERE projects.deleted_at is null and (      projects.id IN                                                                                                                        (SELECT projects.id FROM projects WHERE projects.account_id = 56437                                                                                                                                                 UNION                                                                                                                                                                                                               SELECT DISTINCT projects.id FROM projects INNER JOIN account_team_projects                                                                                                                                          ON account_team_projects.project_id = projects.id INNER JOIN account_teams                                                                                                                                          ON account_teams.id = account_team_projects.team_id INNER JOIN account_team_memberships                                                                                                                             ON account_team_memberships.team_id = account_teams.id WHERE account_team_memberships.user_id = 56437)                                                                                                        ) AND (repository_name IS NOT NULL or name IS NOT NULL);
+exit
+\q
+drop database ben;
+drop database travis-test_test
+;
+drop database 'travis-test_test';
+drop database "travis-test_test";
+drop database "travis-test_development";
+drop database "new_test";
+drop database "new_development";
+drop database "newnew_development";
+drop database "newnew_test";
+drop database "other-thing_development";
+drop database "other-thing_test";
+drop database "pivotal-pulls_development";
+\q
+create database instacart
+;
+exit
+\q
+CREATE TABLE orders (
+order_id integer;
+user_id integer;
+eval_set string;
+order_number integer;
+order_dow integer;
+order_hour_of_day string;
+days_since_prior_order float;
+)
+;
+CREATE TABLE orders (
+order_id integer,
+user_id integer,
+eval_set string,
+order_number integer,
+order_dow integer,
+order_hour_of_day string,
+days_since_prior_order float,
+)
+;
+CREATE TABLE orders (
+order_id integer,
+user_id integer,
+eval_set string,
+order_number integer,
+order_dow integer,
+order_hour_of_day string,
+days_since_prior_order float
+)
+;
+CREATE TABLE orders (
+order_id integer,
+user_id integer,
+eval_set text,
+order_number integer,
+order_dow integer,
+order_hour_of_day text,
+days_since_prior_order float
+)
+;
+COPY orders(order_id, user_id, eval_set, order_number, order_dow, order_hour_of_day, days_since_prior_order) FROM '~/Documents/instacart/orders.csv' DELIMETER ',' CSV HEADER;
+COPY orders(order_id, user_id, eval_set, order_number, order_dow, order_hour_of_day, days_since_prior_order) FROM '~/Documents/instacart/orders.csv' DELIMITER ',' CSV HEADER;
+COPY orders(order_id, user_id, eval_set, order_number, order_dow, order_hour_of_day, days_since_prior_order) FROM '/Users/ben/Documents/instacart/orders.csv' DELIMITER ',' CSV HEADER;
+select count(*) from orders'
+;
+select count(*) from orders;
+'
+select count(*) from orders;
+select count(*) from orders;
+CREATE TABLE products (product_id integer, product_name text, aisle_id integer, department_id integer);
+COPY products FROM '/Users/ben/Documents/instacart/products.csv' DELIMITER ',' CSV HEADER;
+select * FROM products limit 1
+;
+CREATE TABLE aisles(aisle_id integer, aisle text)
+;
+CREATE TABLE departments(department_id integer, department text)
+;
+COPY aisles FROM '/Users/ben/Documents/instacart/aisles.csv' DELIMITER ',' CSV HEADER;
+select * from orders limit 1;
+DELETE from orders where eval_set <> prior;
+DELETE from orders where eval_set <> 'prior';
+select count(*) from orders
+;
+drop column eval_set from orders;
+alter table orders drop column eval_set;
+CREATE TABLE order_products(order_id integer, product_id integer, add_to_card_order integer, reorderd boolean);
+COPY order_products FROM '/Users/ben/Documents/instacart/order_products__prior.csv' DELIMETER ',' CSV HEADER;
+COPY order_products FROM '/Users/ben/Documents/instacart/order_products__prior.csv' DELIMITER ',' CSV HEADER;
+select * from departments;
+COPY departments FROM '/Users/ben/Documents/instacart/departments.csv' DELIMITER ',' CSV HEADER;
+\q
+DROP DATABASE ben
+;
+DROP DATABASE codeship_development;
+DROP DATABASE codeship;
+DROP DATABASE codeship_test;
+DROP DATABASE hello_phoenix_dev ;
+DROP DATABASE instacart;
+DROP DATABASE mothership_development ;
+DROP DATABASE mothership_test ;
+DROP DATABASE nu-tab_test ;
+DROP DATABASE 'nu-tab_test' ;
+DROP DATABASE "nu-tab_test" ;
+DROP DATABASE "nu-tab_development" ;
+DROP DATABASE "template_1" ;
+DROP DATABASE "template1" ;
+exit
+\q
+CREATE DATABASE microblog;
+exit
+\q
+createuser -d -P microblog
+;
+exit
+\q
+DROP DATABASE microblog;
+\q
+DROP DATABASE microblog_dev;
+DROP DATABASE microblog_test;
+exit
+\q
+DROP DATABASE microblog_dev 
+;
+exit;
+\q
+\d
+select * from follows;
+DELETE FROM follows;
+q
+\q
+select * from follows;
+DELETE FROM follows;
+exit
+q
+\q
+DELETE FROM follows;
+\q
+\q
+select * from follows;
+DELETE FROM follows;
+\q
+select * from  follows;
+delete from follows;
+select * from  follows;
+select * from  follows;
+\q
+select * from follows;
+\q
+select * from likes;
+select * from likes;
+exit
+select * from likes;
+select * from likes;
+delete from likes;
+delete from likes;
+select * from likes;
+select * from likes;
+select * from likes;
+select * from likes;
+select * from likes;
+select * from likes;
+\q
+\q
+delete from messages where user_id = 1;
+\q
+delete from likes
+delete from follows
+;
+delete from likes;
+delete from follows;
+\q
+\q
+\h
+\s
+\t
+\d
+\d users
+select * from users
+;
+\\q
+\q
+select * from users;
+update users set password_hash='$2b$12$wmdiVcDi9SO8FDnLj4XMzOjRwf18v7hLqphEs8YAyNZjBDr7QZawa';
+\q
+\q
+CREATE USER utilshare WITH PASSWORD 'je9ho1eeSu';
+\q
+ALTER USER utilshare CREATEDB;
+\q
+select * from households
+;
+delete from  households;
+select * from households
+;
+delete from households;
+delete from roommates;
+delete from households;
+select * from households;
+\q
+select * from expenses
+;
+delete from expenses;
+delete from expenses;
+delete from expenses;
+\q
+select * from users
+;
+\q
+select * from users
+;
+update from users set password_hash=$2b$12$Ic0i/TGmjZvraYdOn/AFCuRVpkcvUcj4H86hf/796gOkEKJKIwnmu
+;
+update users set password_hash=$2b$12$Ic0i/TGmjZvraYdOn/AFCuRVpkcvUcj4H86hf/796gOkEKJKIwnmu
+;
+update users set password_hash='$2b$12$Ic0i/TGmjZvraYdOn/AFCuRVpkcvUcj4H86hf/796gOkEKJKIwnmu';
+select * from users
+;
+\q
+select * from users;
+\t
+t
+select * from payment_requests
+;
+select * from payment_requests;
+\s
+\s payment_requests
