@@ -38,7 +38,7 @@ export default {
           socket.subscribe(this.$store)
           this.$emit('logged-in');
         })
-        //.catch(this.alertErrors)
+        .catch(this.alertErrors)
     }
   }
 };
