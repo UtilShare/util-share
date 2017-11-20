@@ -1,0 +1,12 @@
+#!/bin/bash
+export MIX_ENV=prod
+mix phx.digest
+mix release --env=prod
+
+v=$(ls -v _build/prod/rel/utilshare/releases/ | grep -e "[0-9].[0-9].[0-9]" | tail -n 1)
+echo $v
+echo _build/prod/rel/utilshare/releases/$v/utilshare.tar.gz
+
+scp _build/prod/rel/utilshare/releases/$v/utilshare.tar.gz util-share@devonherlitz.solutions:/home/util-share/
+
+echo "deployed as tar on server"

@@ -2,8 +2,16 @@ defmodule Utilshare.Accounts.Dwolla do
 alias Utilshare.Config, as: Config
 alias Utilshare.Accounts
 alias Decimal, as: D
+import Logger
 
   def authenticate_server() do
+    Logger.info(Config.auth_url)
+    Logger.info(Config.api_key)
+    Logger.info(Config.api_secret)
+    IO.puts(Config.auth_url)
+    IO.puts(Config.api_key)
+    IO.puts(Config.api_secret)
+
     body = {:form, 
     [
       client_id: Config.api_key,

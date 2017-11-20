@@ -1,1 +1,1 @@
-bin/utilshate command Elixir.Utilshare.ReleaseTasks migrate
+bin/utilshare command Elixir.Utilshare.ReleaseTasks migrate
