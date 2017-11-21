@@ -8,9 +8,6 @@ import Logger
     Logger.info(Config.auth_url)
     Logger.info(Config.api_key)
     Logger.info(Config.api_secret)
-    IO.puts(Config.auth_url)
-    IO.puts(Config.api_key)
-    IO.puts(Config.api_secret)
 
     body = {:form, 
     [
