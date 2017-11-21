@@ -2,14 +2,11 @@ defmodule Utilshare.TokenManager do
   use GenServer
   import Logger
   def start_link() do
-    # IO.puts "Env: "
-    # IO.inspect Mix.env
     state0 = %{}
-    # if(Mix.env != :test) do
     auth = Utilshare.Accounts.Dwolla.authenticate_server()
     Logger.info("AUTH"<>inspect(auth))
-    IO.inspect auth
     Utilshare.TokenRefreshTask.start_link(auth["expires_in"])
+    Logger.info("Set Init Token "<>auth["access_token"])
     state0 = %{token: auth["access_token"]}
     # end
     GenServer.start_link(__MODULE__, state0, name: __MODULE__)
@@ -22,8 +19,10 @@ defmodule Utilshare.TokenManager do
   def handle_call({:put, key, val}, _from, state) do
     if(key == :auth) do 
       token = val["access_token"]
-      Map.put(state,:token, token)
+      Logger.info("Setting new Token: "<>token)
+      state = Map.put(state, :token, token)
       Utilshare.TokenRefreshTask.start_link(val["expires_in"])
+      Logger.info("Done Setting Token: "<>token)
     end
 
     {:reply, :ok, Map.put(state, key, val)}

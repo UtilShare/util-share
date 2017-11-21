@@ -1,6 +1,9 @@
 defmodule Utilshare.Config do
+  import Logger
   def token do
-    GenServer.call(Utilshare.TokenManager, {:get, :token})
+    token = GenServer.call(Utilshare.TokenManager, {:get, :token})
+    Logger.info "======= Giving Token "<>token<>" To Dwolla ==========="
+    token
   end
   def api_url do
     Application.get_env(:utilshare, :api_url)
